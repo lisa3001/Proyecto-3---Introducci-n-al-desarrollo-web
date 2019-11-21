@@ -14,6 +14,9 @@ export class MainServiceService {
   idiomas: any;
   paises: any;
   tiposdeinstituciones: any;
+  registered: { username: string; password: string; };
+
+  imagenGuardada: String;
 
   constructor(private apolo: Apollo) { 
     this.apolo.query({

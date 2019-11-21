@@ -7,6 +7,7 @@
     <hr class="divider">
     <div class="container-fluid contenedor">
         <div id="contenedorImagen">
+            <h5 style="margin-bottom:10px; color: rgb(9, 134, 136);">Nombre de usuario</h5>
             <div class="imgUp">
                 <div class="imagePreview"></div>
                 <label class="btn btnRegistrar btn-primary btn-responsive">
@@ -19,70 +20,54 @@
             <form style="color: black;">
                 <div class="form-group">
                     <label for="primer-nombre">Nombre</label>
-                    <input type="text" class="form-control" placeholder="Nombre" id="primer-nombre" disabled>
+                    <input type="text" class="form-control" placeholder="Nombre" id="primer-nombre-info" value="{{nombre}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="primer-apellido">Primer apellido</label>
-                    <input type="text" class="form-control" placeholder="Primer apellido" id="primer-apellido" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="segundo-apellido">Segundo Apellido</label>
-                    <input type="text" class="form-control" placeholder="Segundo Apellido" id="segundo-apellido"
+                    <input type="text" class="form-control" placeholder="Primer apellido" id="primer-apellido-info" value="{{apellido1}}"
                         disabled>
                 </div>
                 <div class="form-group">
-                    <label for="nacimiento">Fecha de nacimiento</label>
-                    <input type="text" class="form-control" placeholder="Fecha de nacimiento" id="nacimiento" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="nacionalidad">Nacionalidad</label>
-                    <input type="text" class="form-control" placeholder="Nacionalidad" id="nacionalidad" disabled>
+                    <label for="segundo-apellido">Segundo Apellido</label>
+                    <input type="text" class="form-control" placeholder="Segundo Apellido" id="segundo-apellido-info" value="{{apellido2}}"
+                        disabled>
                 </div>
                 <div class="form-group">
                     <label for="correo">Correo Electrónico</label>
-                    <input type="text" class="form-control" placeholder="Correo Electrónico" id="correo" disabled>
+                    <input type="text" class="form-control" placeholder="Correo Electrónico" id="correo-info" value="{{correo}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="telefono1">Teléfono 1</label>
-                    <input type="text" class="form-control" placeholder="Teléfono 1" id="telefono1" disabled>
+                    <input type="text" class="form-control" placeholder="Teléfono 1" id="telefono1-info" value="{{telefono1}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="telefono2">Teléfono 2</label>
-                    <input type="text" class="form-control" placeholder="Teléfono 2" id="telefono2" disabled>
+                    <input type="text" class="form-control" placeholder="Teléfono 2" id="telefono2-info" value="{{telefono2}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="sitio-web">Sitio web</label>
-                    <input type="text" class="form-control" placeholder="Sitio web" id="sitio-web" disabled>
+                    <input type="text" class="form-control" placeholder="Sitio web" id="sitio-web-info" value="{{sitio}}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="nacimiento">Fecha de nacimiento</label>
+                    <input type="text" class="form-control" placeholder="Fecha de nacimiento" id="nacimiento-info" value="{{fechaNacimiento}}"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="nacionalidad">Nacionalidad</label>
+                    <input type="text" class="form-control" placeholder="Nacionalidad" id="nacionalidad-info" value="{{nacionalidad}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="provincia">Provincia</label>
-                    <div id="provinciaDropdown" class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle disabled dropdowUbicacion" type="button"
-                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            aria-disabled="true">
-                            Provincia
-                        </button>
-                    </div>
+                    <input type="text" class="form-control" placeholder="Provincia" id="provincia-info" value="{{provincia}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="canton">Cantón</label>
-                    <div id="cantonDropdown" class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle disabled dropdowUbicacion" type="button"
-                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            aria-disabled="true">
-                            Cantón
-                        </button>
-                    </div>
+                    <input type="text" class="form-control" placeholder="Cantón" id="canton-info" value="{{canton}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="distrito">Distrito</label>
-                    <div id="distritoDropdown" class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle disabled dropdowUbicacion" type="button"
-                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                            aria-disabled="true">
-                            Distrito
-                        </button>
-                    </div>
+                    <input type="text" class="form-control" placeholder="Distrito" id="distrito-info" value="{{distrito}}" disabled>
                 </div>
                 <div class="clearfix"></div>
             </form>
@@ -101,90 +86,77 @@
                         <div id="contenedorInformacion">
                             <form style="color: black;">
                                 <div class="form-group">
-                                    <label for="primer-nombre">Nombre</label>
-                                    <input type="text" class="form-control" placeholder="Nombre" id="primer-nombre">
+                                    <label for="name">Nombre</label>
+                                    <input type="text" class="form-control" placeholder="Nombre" id="primer-nombre" value="{{nombre}}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="primer-apellido">Primer apellido</label>
-                                    <input type="text" class="form-control" placeholder="Primer apellido"
-                                        id="primer-apellido">
+                                    <label for="apellido1">Primer apellido</label>
+                                    <input type="text" class="form-control" placeholder="Primer apellido" value="{{apellido1}}"
+                                        id="primer-apellido" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="segundo-apellido">Segundo Apellido</label>
-                                    <input type="text" class="form-control" placeholder="Segundo Apellido"
-                                        id="segundo-apellido">
+                                    <label for="apellido2">Segundo Apellido</label>
+                                    <input type="text" class="form-control" placeholder="Segundo Apellido" value="{{apellido2}}"
+                                        id="segundo-apellido" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nacimiento">Fecha de nacimiento</label>
-                                    <input type="text" class="form-control" placeholder="Fecha de nacimiento"
-                                        id="nacimiento">
+                                    <label for="email">Correo Electrónico</label>
+                                    <input type="text" class="form-control" placeholder="Correo Electrónico" value="{{correo}}"
+                                        id="correo" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nacionalidad">Nacionalidad</label>
-                                    <input type="text" class="form-control" placeholder="Nacionalidad"
-                                        id="nacionalidad">
+                                    <label for="telefono">Teléfono 1</label>
+                                    <input required type="text" class="form-control" placeholder="Teléfono 1" id="telefono1" value="{{telefono1}}"
+                                        onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
                                 </div>
                                 <div class="form-group">
-                                    <label for="correo">Correo Electrónico</label>
-                                    <input type="text" class="form-control" placeholder="Correo Electrónico"
-                                        id="correo">
+                                    <label for="telefono">Teléfono 2</label>
+                                    <input required type="text" class="form-control" placeholder="Teléfono 2" id="telefono2" value="{{telefono2}}"
+                                        onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
                                 </div>
                                 <div class="form-group">
-                                    <label for="telefono1">Teléfono 1</label>
-                                    <input type="text" class="form-control" placeholder="Teléfono 1" id="telefono1">
+                                    <label for="sitio">Sitio web</label>
+                                    <input type="text" class="form-control" placeholder="Sitio web" id="sitio-web" required value="{{sitio}}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="telefono2">Teléfono 2</label>
-                                    <input type="text" class="form-control" placeholder="Teléfono 2" id="telefono2">
+                                    <label for="fecha">Fecha de nacimiento</label>
+                                    <input type="date" class="form-control" placeholder="Fecha de nacimiento" id="nacimiento" value="{{fechaNacimiento}}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="sitio-web">Sitio web</label>
-                                    <input type="text" class="form-control" placeholder="Sitio web" id="sitio-web">
+                                    <label for="pais">Nacionalidad</label>
+                                    <select id = "nacionalidadDropdown" class="dropdwn" style="margin-left: 2px; display: flex;">
+                                        <option value = "one">one</option>
+                                        <option value = "two">two</option>
+                                        <option value = "3">three</option>
+                                        <option value = "4">four</option>
+                                      </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="provincia">Provincia</label>
-                                    <div id="provinciaDropdown" class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle dropdowUbicacion" type="button"
-                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            Provincia
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+                                    <label for="provincia1">Provincia</label>
+                                    <select id = "provinciaDropdown" class="dropdwn" style="margin-left: 2px; display: flex;">
+                                        <option value = "one">one</option>
+                                        <option value = "two">two</option>
+                                        <option value = "3">three</option>
+                                        <option value = "4">four</option>
+                                      </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="canton">Cantón</label>
-                                    <div id="cantonDropdown" class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle dropdowUbicacion" type="button"
-                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            Cantón
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+                                    <label for="canton1">Cantón</label>
+                                    <select id = "cantonDropdown" class="dropdwn" style="margin-left: 2px; display: flex;">
+                                        <option value = "one">one</option>
+                                        <option value = "two">two</option>
+                                        <option value = "3">three</option>
+                                        <option value = "4">four</option>
+                                      </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="distrito">Distrito</label>
-                                    <div id="distritoDropdown" class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle dropdowUbicacion" type="button"
-                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            Distrito
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+                                    <label for="distrito1">Distrito</label>
+                                    <select id = "distritoDropdown" class="dropdwn" style="margin-left: 2px; display: flex;">
+                                        <option value = "one">one</option>
+                                        <option value = "two">two</option>
+                                        <option value = "3">three</option>
+                                        <option value = "4">four</option>
+                                      </select>
                                 </div>
                                 <div class="clearfix"></div>
                             </form>
@@ -192,7 +164,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                        <input type="submit" class="btn btnRegistrar btn-success" value="Guardar Cambios">
+                        <input type="button" class="btn btnRegistrar btn-success" (click)="GuardarCambios()" value="Guardar Cambios">
                     </div>
                 </form>
             </div>

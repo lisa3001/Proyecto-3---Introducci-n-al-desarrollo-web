@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery/dist/jquery.min.js'
 import { Router } from '@angular/router';
 import { MainServiceService } from 'src/app/services/main-service.service';
+import { Apollo } from 'apollo-angular';
+import { empresaNombreUsuarioQuery } from 'src/app/queries/queries.module';
 
 @Component({
   selector: 'app-register',
@@ -15,11 +17,11 @@ export class RegisterComponent implements OnInit {
   userPassword: string;
   link: string;
 
-  constructor(private _router: Router, private mainservice: MainServiceService) { 
+  constructor(private apollo: Apollo, private _router: Router, private mainservice: MainServiceService) { 
     this.link = "/Register";
     this.userName = "";
     this.userPassword = "";
-    this.logged = mainservice.logindata;
+    this.logged = this.mainservice.logindata;
   }
 
   ngOnInit() {
@@ -29,7 +31,20 @@ export class RegisterComponent implements OnInit {
   AcceptButton(){
     var isButtonChecked = this.isRadioButtonChecked();
     if (this.userName != "" && this.userPassword != "" && isButtonChecked){
-        this._router.navigate([this.link]);
+        this.mainservice.registered = {username: this.userName, password: this.userPassword};
+        this.apollo.query({
+          query: empresaNombreUsuarioQuery,
+          variables: {
+            nombreusuario: this.userName
+          }
+        }).subscribe(data => {
+          console.log(data.data);
+          if (data.data['getNombresUsuarioEmpresas'] == null) {
+            this._router.navigate([this.link]);
+          } else {
+            this.WrongData('userName', 'userNameError');
+          }
+        });
     }else{
       this.textChange('userName', 'userNameError', 'Debes ingresar un nombre de usuario.');
       this.textChange('userPassword', 'userPassError', 'Debes ingresar una contraseña.');
@@ -86,5 +101,14 @@ export class RegisterComponent implements OnInit {
   saveData(tagName: string, data: string){
     if (tagName == "userName") this.userName = data;
     else this.userPassword = data;
+  }
+
+  WrongData(tagName: string, errorTag: string){
+    var element = (document.getElementById(tagName) as HTMLInputElement);
+    element.className += " is-invalid";
+    var errorElement = (document.getElementById(errorTag) as HTMLLabelElement); 
+    errorElement.className = " invalid-feedback";
+    errorElement.style.marginLeft = "9px";
+    errorElement.textContent = "El nombre de usuario ya existe."
   }
 }
