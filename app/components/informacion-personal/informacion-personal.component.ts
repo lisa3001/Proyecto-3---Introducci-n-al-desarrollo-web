@@ -24,6 +24,7 @@ export class InformacionPersonalComponent implements OnInit {
   imagen:string;
 
   constructor(private mainservice: MainServiceService) { 
+
   }
 
   ngOnInit() {
@@ -53,6 +54,15 @@ export class InformacionPersonalComponent implements OnInit {
           
         });
     });
+
+
+
+    this.nombre = this.mainservice.logindata.nombre;
+    this.apellido1 = this.mainservice.logindata.apellido1;
+    this.apellido2 = this.mainservice.logindata.apellido2;
+    this.correo = this.mainservice.logindata.email;
+    this.nacionalidad = this.mainservice.logindata.nacionalidad;
+    this.fechaNacimiento = this.mainservice.logindata.fechadenacimiento;
   }
 
   GuardarCambios(){

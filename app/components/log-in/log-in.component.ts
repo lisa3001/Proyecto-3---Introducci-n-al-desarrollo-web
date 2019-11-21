@@ -27,6 +27,7 @@ export class LogInComponent implements OnInit {
   }
 
   AcceptButton(){
+    console.log("asd");
     if (this.userName != "" && this.userPassword != ""){
         this.login();
     }else{
@@ -96,6 +97,7 @@ export class LogInComponent implements OnInit {
           contrasenia: this.userPassword
         } 
       }).subscribe(data => {
+        console.log(data);
         if (data.data['personaLogin'] != null) { 
           this.mainservice.logindata = data.data['personaLogin'];
           this.router.navigate([this.link]);
