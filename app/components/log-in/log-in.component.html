@@ -1,46 +1,52 @@
 <div class="main-div">
-    <div class="container">
-        <div class="row justify-content-center logo-row">
-            <img class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 align-self-center" src="assets/images/Logo Bind In.png" routerLink="">
-          </div>
-        <div class="row justify-content-center slogan-row">
-            <img class="col-xl-6 col-lg-7 col-md-8 col-sm-11 col-11 align-self-center" src="assets/images/slogan.png" routerLink="">
-        </div>
-        <div class="row justify-content-center logIn-row">
-            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-7 col-7 align-self-center logIn">
-                <div class="form-group userName">
-                    <label for="userNameField" class="userNameLabel">Nombre de usuario</label>
-                    <input type="text" class="form-control userNameField1" id="userName" aria-describedby="userNameField" placeholder="Ingresa tu nombre de usuario">
-                </div>
-                <div class="form-group">
-                    <label for="userPasswordField" class="userPasswordLabel">Contraseña</label>
-                    <input type="password" class="form-control userNameField1" id="userPassword" aria-describedby="userPasswordField" placeholder="Ingresa tu contraseña">
-                </div>
-                <div class="form-group">
-                    <label class="userType">¿Que tipo de usuario eres?</label>
-                    <div class="userOption">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="UserOptions" id="Cliente" value="Cliente">
-                            <label class="form-check-label" for="Cliente">Cliente</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="UserOptions" id="Empresa" value="Empresa">
-                            <label class="form-check-label" for="Empresa">Empresa</label>
+        <div class="container">
+            <div class="row justify-content-center logo-row">
+                <img class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 align-self-center" src="assets/images/Logo Bind In.png" routerLink="">
+              </div>
+            <div class="row justify-content-center slogan-row">
+                <img class="col-xl-6 col-lg-7 col-md-8 col-sm-11 col-11 align-self-center" src="assets/images/slogan.png" routerLink="">
+            </div>
+            <div class="row justify-content-center logIn-row">
+                <div class="col-xl-4 col-lg-5 col-md-6 col-sm-7 col-7 align-self-center logIn">
+                    <div class="form-group userName">
+                        <label for="userNameField" class="userNameLabel">Nombre de usuario</label>
+                        <input type="text" class="form-control userNameField1" id="userName" (keyup)="textChange('userName', 'userNameError')" aria-describedby="userNameField" placeholder="Ingresa tu nombre de usuario" required>
+                        <div id="userNameError" class="usuarioInvalido">
+                                Debes ingresar un nombre de usuario.
                         </div>
                     </div>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary btnLogIn">Iniciar Sesión</button>
-                    </div>    
-                </div>
-                <div class="row justify-content-center newUser">
-                    <label  class="col-auto align-self-center newLabel">¿Eres nuevo en BindIn?</label>
-                </div>
-                <div class="row justify-content-center registerRow">
-                    <label class="col-auto align-self-center registerLabel" routerLink="/Register">Regístrate</label>
+                    <div class="form-group userPass">
+                        <label for="userPasswordField" class="userPasswordLabel">Contraseña</label>
+                        <input type="password" class="form-control userNameField1 " id="userPassword" (keyup)="textChange('userPassword', 'userPassError')" aria-describedby="userPasswordField" placeholder="Ingresa tu contraseña" required>
+                        <div id="userPassError" class="InvalidPass">
+                                Debes ingresar una contraseña.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="userType">¿Que tipo de usuario eres?</label>
+                        <div class="userOption">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="UserOptions" id="Cliente" value="Cliente" (change)="handleChangeClient($event)">
+                                <label class="form-check-label" for="Cliente" id="client">Persona</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="UserOptions" id="Empresa" value="Empresa" (change)="handleChangeEnterprise($event)">
+                                <label class="form-check-label" for="Empresa" id="enterprise">Empresa</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end" id="dd">
+                        <div class="col-auto">
+                            <button type="submit" id="aja" class="btn btn-primary btnLogIn" (click)="AcceptButton()">Iniciar Sesión</button>
+                        </div>    
+                    </div>
+                    <div class="row justify-content-center newUser">
+                        <label  class="col-auto align-self-center newLabel">¿Eres nuevo en BindIn?</label>
+                    </div>
+                    <div class="row justify-content-center registerRow">
+                        <label class="col-auto align-self-center registerLabel" routerLink="/Register">Regístrate</label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
