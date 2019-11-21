@@ -16,7 +16,7 @@ export class EnterpriseRegisterComponent implements OnInit {
   constructor(private apollo: Apollo, private router: Router, private mainservice: MainServiceService) {
     this.enterpriseName = "";
     this.enterpriseEmail = "";
-    this.registerInfo = mainservice.registered;
+    this.registerInfo = mainservice.logindata;
    }
 
   ngOnInit() {
@@ -68,7 +68,6 @@ export class EnterpriseRegisterComponent implements OnInit {
   }
 
   registrar() {
-    console.log(this.registerInfo);
     this.apollo.mutate({
       mutation: crearEmpresaMutation,
       variables: {

@@ -22,9 +22,10 @@ export class InformacionPersonalComponent implements OnInit {
   canton:string;
   distrito:string;
   imagen:string;
+  username:string;
 
-  constructor(private mainservice: MainServiceService) { 
-
+  constructor(private mainservice: MainServiceService) {     
+    this.username = this.mainservice.logindata.nombreusuario;
   }
 
   ngOnInit() {

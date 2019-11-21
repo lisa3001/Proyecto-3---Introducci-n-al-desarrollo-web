@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     var isButtonChecked = this.isRadioButtonChecked();
     if (this.userName != "" && this.userPassword != "" && isButtonChecked){
       if(this.link == "/EmpresaRegister") { 
-        this.mainservice.registered = {username: this.userName, password: this.userPassword};
+        this.mainservice.logindata = {username: this.userName, password: this.userPassword};
           this.apollo.query({
             query: empresaNombreUsuarioQuery,
             variables: {
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
             }
           });
         } else {
-          this.mainservice.registered = {username: this.userName, password: this.userPassword};
+          this.mainservice.logindata = {username: this.userName, password: this.userPassword};
           this.apollo.query({
             query: personaNombreUsuarioQuery,
             variables: {

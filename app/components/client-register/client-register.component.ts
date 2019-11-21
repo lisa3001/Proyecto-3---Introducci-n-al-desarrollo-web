@@ -29,13 +29,13 @@ export class ClientRegisterComponent implements OnInit {
     this.surName2 = "";
     this.nationality = "";
     this.email = "";
-
+/*
     this.name = "Luis";
     this.birthDate = "2019-01-29";
     this.surName1 = "Molina";
-    this.surName2 = "Juárez";
+    this.surName2 = "Juarez";
     this.nationality = "Costa Rica";
-    this.email = "luisfermjua@gmail.com";
+    this.email = "luisfermjua@gmail.com";*/
    }
 
   ngOnInit() {
@@ -45,12 +45,12 @@ export class ClientRegisterComponent implements OnInit {
   AcceptButton(){
     var isDateOK = this.validateDate();
     var isCountry = this.validateCountry();
-    if (name != "" && this.surName2 != "" && this.surName1 != "" && this.email != "" && isDateOK && isCountry){
+    if (this.name != "" && this.surName2 != "" && this.surName1 != "" && this.email != "" && isDateOK && isCountry){
       this.apollo.mutate({
         mutation: crearPersonaMutation,
         variables: {
           nombreusuario: this.mainservice.logindata.username,
-          contrasenia: this.mainservice.logindata.contrasenia,
+          contrasenia: this.mainservice.logindata.password,
           nombre: this.name,
           apellido1: this.surName1,
           apellido2: this.surName2,
@@ -59,10 +59,14 @@ export class ClientRegisterComponent implements OnInit {
           nacionalidad: this.nationality
         }
       }).subscribe(data => {
-        if(data.data['crearpersona'] != null) {
+        if(data.data['crearPersona'] != null && data.data['crearPersona'].success) {
           this.router.navigate(['/PersonProfile']);
         } else {
-          alert("Error");
+          if (data.data['crearPersona'] != null && data.data['crearPersona'].message) {
+            alert(data.data['crearPersona'].message);
+          } else {
+            alert("Error");
+          }
         }
       });
     } else {
