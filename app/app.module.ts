@@ -14,6 +14,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ClientRegisterComponent } from './components/client-register/client-register.component';
 import { EnterpriseRegisterComponent } from './components/enterprise-register/enterprise-register.component';
 import { EnterpriseProfileComponent } from './components/enterprise-profile/enterprise-profile.component';
+import { IdiomasPersonaComponent } from './components/idiomas-persona/idiomas-persona.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EnterpriseProfileComponent } from './components/enterprise-profile/ente
     HeaderComponentComponent,
     PerfilPersonaComponent,
     FooterComponentComponent,
-    EnterpriseProfileComponent
+    EnterpriseProfileComponent,
+    IdiomasPersonaComponent
   ],
   imports: [
     BrowserModule,

@@ -72,6 +72,7 @@ export const personaQuery = gql`
           distrito
       }
 }`;
+
 export const empresaQuery = gql`
     query EmpresaLogin($nombreusuario: String!, $contrasenia: String!){
       empresaLogin(nombreusuario: $nombreusuario, contrasenia: $contrasenia) {
@@ -94,11 +95,26 @@ query EmpresaUN($nombreusuario: String!){
   getNombresUsuarioEmpresas(nombreusuario: $nombreusuario)
 }`;
 
+export const personaNombreUsuarioQuery = gql`
+query PersonaUN($nombreusuario: String!){
+  getNombresUsuarioPersonas(nombreusuario: $nombreusuario)
+}`;
+
+
+
 
 
 export const crearEmpresaMutation = gql`
 mutation CrearEmpresa($nombreusuario: String!, $contrasenia: String!, $email: String!, $nombre: String!) {
   crearEmpresa(nombreusuario: $nombreusuario, contrasenia: $contrasenia, email: $email, nombre: $nombre) {
+    success
+    message
+  }
+}`;
+
+export const crearPersonaMutation = gql`
+mutation CrearPersona($nombreusuario: String!, $contrasenia: String!, $nombre: String!, $apellido1: String!, $apellido2: String!, $email: String!, $fechadenacimiento: String!, $nacionalidad: String!) {
+  crearPersona(nombreusuario: $nombreusuario, contrasenia: $contrasenia, nombre: $nombre, apellido1: $apellido1, apellido2: $apellido2, email: $email, fechadenacimiento: $fechadenacimiento, nacionalidad: $nacionalidad) {
     success
     message
   }

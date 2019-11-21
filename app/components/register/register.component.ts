@@ -3,7 +3,7 @@ import * as $ from 'jquery/dist/jquery.min.js'
 import { Router } from '@angular/router';
 import { MainServiceService } from 'src/app/services/main-service.service';
 import { Apollo } from 'apollo-angular';
-import { empresaNombreUsuarioQuery } from 'src/app/queries/queries.module';
+import { empresaNombreUsuarioQuery, personaNombreUsuarioQuery } from 'src/app/queries/queries.module';
 
 @Component({
   selector: 'app-register',
@@ -21,30 +21,46 @@ export class RegisterComponent implements OnInit {
     this.link = "/Register";
     this.userName = "";
     this.userPassword = "";
-    this.logged = mainservice.logindata;
+    this.logged = this.mainservice.logindata;
   }
 
   ngOnInit() {
+    
   }
 
   AcceptButton(){
     var isButtonChecked = this.isRadioButtonChecked();
     if (this.userName != "" && this.userPassword != "" && isButtonChecked){
+      if(this.link == "/EmpresaRegister") { 
         this.mainservice.registered = {username: this.userName, password: this.userPassword};
-        this.apollo.query({
-          query: empresaNombreUsuarioQuery,
-          variables: {
-            nombreusuario: this.userName
-          }
-        }).subscribe(data => {
-          console.log(data.data);
-          if (data.data['getNombresUsuarioEmpresas'] == null) {
-            this._router.navigate([this.link]);
-          } else {
-            this.WrongData('userName', 'userNameError');
-          }
-        });
-    }else{
+          this.apollo.query({
+            query: empresaNombreUsuarioQuery,
+            variables: {
+              nombreusuario: this.userName
+            }
+          }).subscribe(data => {
+            if (data.data['getNombresUsuarioEmpresas'] == null) {
+              this._router.navigate([this.link]);
+            } else {
+              this.WrongData('userName', 'userNameError');
+            }
+          });
+        } else {
+          this.mainservice.registered = {username: this.userName, password: this.userPassword};
+          this.apollo.query({
+            query: personaNombreUsuarioQuery,
+            variables: {
+              nombreusuario: this.userName
+            }
+          }).subscribe(data => {
+            if (data.data['getNombresUsuarioPersonas'] == null) {
+              this._router.navigate([this.link]);
+            } else {
+              this.WrongData('userName', 'userNameError');
+            }
+          });
+        }
+    } else {
       this.textChange('userName', 'userNameError', 'Debes ingresar un nombre de usuario.');
       this.textChange('userPassword', 'userPassError', 'Debes ingresar una contraseña.');
     }
