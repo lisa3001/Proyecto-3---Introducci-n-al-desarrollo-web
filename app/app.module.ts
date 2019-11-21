@@ -9,10 +9,14 @@ import { PerfilPersonaComponent } from './components/perfil-persona/perfil-perso
 import { FooterComponentComponent } from './components/footer-component/footer-component.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LogInComponent,
+    RegisterComponent,
     InformacionPersonalComponent,
     HeaderComponentComponent,
     PerfilPersonaComponent,
