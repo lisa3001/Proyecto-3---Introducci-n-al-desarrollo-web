@@ -6,6 +6,7 @@ import { EnterpriseRegisterComponent } from './components/enterprise-register/en
 import { ClientRegisterComponent } from './components/client-register/client-register.component';
 import { PerfilPersonaComponent } from './components/perfil-persona/perfil-persona.component';
 import { EnterpriseProfileComponent } from './components/enterprise-profile/enterprise-profile.component';
+import { IdiomasPersonaComponent } from './components/idiomas-persona/idiomas-persona.component';
 
 
 const routes: Routes = [
