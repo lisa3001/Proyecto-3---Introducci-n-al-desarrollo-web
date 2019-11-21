@@ -14,6 +14,7 @@ export class MainServiceService {
   idiomas: any;
   paises: any;
   tiposdeinstituciones: any;
+  registered: { username: string; password: string; };
 
   constructor(private apolo: Apollo) { 
     this.apolo.query({

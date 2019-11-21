@@ -88,3 +88,18 @@ export const empresaQuery = gql`
           distrito
       }
 }`;
+
+export const empresaNombreUsuarioQuery = gql`
+query EmpresaUN($nombreusuario: String!){
+  getNombresUsuarioEmpresas(nombreusuario: $nombreusuario)
+}`;
+
+
+
+export const crearEmpresaMutation = gql`
+mutation CrearEmpresa($nombreusuario: String!, $contrasenia: String!, $email: String!, $nombre: String!) {
+  crearEmpresa(nombreusuario: $nombreusuario, contrasenia: $contrasenia, email: $email, nombre: $nombre) {
+    success
+    message
+  }
+}`;
