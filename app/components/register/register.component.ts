@@ -31,8 +31,8 @@ export class RegisterComponent implements OnInit {
     if (this.userName != "" && this.userPassword != "" && isButtonChecked){
         this._router.navigate([this.link]);
     }else{
-      this.textChange('userName', 'userNameError');
-      this.textChange('userPassword', 'userPassError');
+      this.textChange('userName', 'userNameError', 'Debes ingresar un nombre de usuario.');
+      this.textChange('userPassword', 'userPassError', 'Debes ingresar una contraseña.');
     }
   }
 
@@ -47,13 +47,14 @@ export class RegisterComponent implements OnInit {
     return true;
   }
 
-  textChange(tagName: string, errorTag: string){
+  textChange(tagName: string, errorTag: string, errorMessage: string){
     var element = (document.getElementById(tagName) as HTMLInputElement);
     if (element.value.trim() == ""){
       element.className += " is-invalid";
       var errorElement = document.getElementById(errorTag); 
       errorElement.className = " invalid-feedback";
       errorElement.style.marginLeft = "9px";
+      errorElement.textContent = errorMessage;
     }else{
       element.classList.remove("is-invalid");
     }
