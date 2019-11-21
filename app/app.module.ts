@@ -11,16 +11,22 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ClientRegisterComponent } from './components/client-register/client-register.component';
+import { EnterpriseRegisterComponent } from './components/enterprise-register/enterprise-register.component';
+import { EnterpriseProfileComponent } from './components/enterprise-profile/enterprise-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogInComponent,
+    EnterpriseRegisterComponent,
     RegisterComponent,
+    ClientRegisterComponent,
     InformacionPersonalComponent,
     HeaderComponentComponent,
     PerfilPersonaComponent,
-    FooterComponentComponent
+    FooterComponentComponent,
+    EnterpriseProfileComponent
   ],
   imports: [
     BrowserModule,
