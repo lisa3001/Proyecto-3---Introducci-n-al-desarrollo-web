@@ -1,44 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
-import { RouteConfigLoadEnd, RouterLink, Router } from '@angular/router';
 import { MainServiceService } from 'src/app/services/main-service.service';
+import { personaQuery, empresaQuery } from 'src/app/queries/queries.module';
+import { Router } from '@angular/router';
 
-const personaQuery = gql`
-    query PersonaLogin($nombreusuario: String!, $contrasenia: String!){
-      personaLogin(nombreusuario: $nombreusuario, contrasenia: $contrasenia) {
-          nombreusuario
-          nombre
-          apellido1
-          apellido2
-          email
-          telefono1
-          telefono2
-          sitioweb
-          nacionalidad
-          fechadenacimiento
-          fotografia
-          provincia
-          canton
-          distrito
-      }
-    }`;
-const empresaQuery = gql`
-    query EmpresaLogin($nombreusuario: String!, $contrasenia: String!){
-      empresaLogin(nombreusuario: $nombreusuario, contrasenia: $contrasenia) {
-          nombreusuario
-          nombre
-          logo
-          nombrecontacto
-          email
-          telefono1
-          telefono2
-          sitioweb
-          provincia
-          canton
-          distrito
-      }
-    }`;
 
 @Component({
   selector: 'app-log-in',
