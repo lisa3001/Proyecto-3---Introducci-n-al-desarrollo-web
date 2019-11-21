@@ -20,18 +20,18 @@
                     <label class="userType">¿Que tipo de usuario eres?</label>
                     <div class="userOption">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="UserOptions" id="Cliente" value="Cliente">
-                            <label class="form-check-label" for="Cliente">Cliente</label>
+                            <input class="form-check-input" type="radio" name="UserOptions" id="personacheck" value="Persona" checked>
+                            <label class="form-check-label" for="Cliente">Persona</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="UserOptions" id="Empresa" value="Empresa">
+                            <input class="form-check-input" type="radio" name="UserOptions" id="empresacheck" value="Empresa">
                             <label class="form-check-label" for="Empresa">Empresa</label>
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-end">
                     <div class="col-auto">
-                        <button type="submit" class="btn btn-primary btnLogIn">Iniciar Sesión</button>
+                        <button type="submit" class="btn btn-primary btnLogIn" (click)="login()">Iniciar Sesión</button>
                     </div>    
                 </div>
                 <div class="row justify-content-center newUser">
