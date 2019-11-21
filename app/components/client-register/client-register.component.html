@@ -1,1 +1,68 @@
-<p>client-register works!</p>
+<div class="main-div">
+    <div class="container">
+        <div class="row justify-content-center logo-row">
+            <img class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 align-self-center" src="assets/images/Logo Bind In.png" routerLink="">
+          </div>
+        <div class="row justify-content-center slogan-row">
+            <img class="col-xl-6 col-lg-7 col-md-8 col-sm-11 col-11 align-self-center" src="assets/images/slogan.png" routerLink="">
+        </div>
+        <div class="row justify-content-center logIn-row">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-sm-10 col-10 align-self-start logIn">
+                <div class="row firstLine">
+                    <div class = "col-md-6">
+                        <label for="NameField" class="NameLabel">Nombre</label>
+                        <input type="text" class="form-control " id="userName" (keyup)="textChange('userName', 'NameError', 'Debes ingresar un nombre')" aria-describedby="NameField" placeholder="Ingresa tu nombre" required>
+                        <div id="NameError" class="">
+                            
+                        </div>
+                    </div>
+                    <div class = "col-md-6 ">
+                        <label for="DateBirthField" class="BirthDateLabel">Fecha de nacimiento</label>
+                        <input type="date" class="form-control is-invalid" id="userBirthDate" (change)= "getDate()" aria-describedby="DateBirthField" placeholder="Ingresa tu fecha de nacimiento" required>
+                        <div id="dateError" class="">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row firstLine">
+                    <div class = "col-md-6">
+                        <label for="SurName1Field" class="NameLabel">Primer Apellido</label>
+                        <input type="text" class="form-control " id="surName" (keyup)="textChange('surName', 'surNameError', 'Debes ingresar tu primer apellido')" aria-describedby="SurName1Field" placeholder="Ingresa tu primerApellido" required>
+                        <div id="surNameError" class="">
+                            
+                        </div>
+                    </div>
+                    <div class = "col-md-6 ">
+                        <label for="DateBirthField" class="NameLabel">Nacionalidad</label>
+                        <select  class="custom-select" id="countriesSelect" ng-model="countries" (change)="getCountry()" required>
+                            <option value=''>Elige tu país de origen</option>
+                            <option *ngFor="let obj of countries" ngValue="obj">{{obj}}</option>
+                        </select>
+                        <div id="countryError" class="">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row firstLine">
+                    <div class = "col-md-6">
+                        <label for="SurName2Field" class="NameLabel">Segundo Apellido </label>
+                        <input type="text" class="form-control " id="surName2" (keyup)="textChange('surName2', 'surName2Error', 'Debes ingresar tu segundo apellido.')" aria-describedby="SurName2Field" placeholder="Ingresa tu segundo apellido" required>
+                        <div id="surName2Error" class="">
+                            
+                        </div>
+                    </div>
+                    <div class = "col-md-6 ">
+                        <label for="userPasswordField" class="NameLabel">Correo Electrónico</label>
+                        <input type="email" class="form-control " id="userPassword" (keyup)="textChange('userPassword', 'emailError', 'Debes ingresar un correo.')" aria-describedby="userPasswordField" placeholder="Ingresa tu correo electrónico" required>
+                        <div id="emailError" class="">
+       
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-end firstLine">
+                        <button type="submit" class="btn btn-primary col-3 btnLogIn" (click)="AcceptButton()">Aceptar</button>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>

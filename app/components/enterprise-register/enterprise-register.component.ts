@@ -42,6 +42,7 @@ export class EnterpriseRegisterComponent implements OnInit {
       errorElement.textContent = errorMesagge;
     }else{
       element.classList.remove("is-invalid");
+      element.className += " is-valid";
     }
     this.saveData(tagName, element.value.trim());
   }
