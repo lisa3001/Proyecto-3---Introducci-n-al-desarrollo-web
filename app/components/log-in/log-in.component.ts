@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import { MainServiceService } from 'src/app/services/main-service.service';
+import { personaQuery, empresaQuery } from 'src/app/queries/queries.module';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-log-in',
@@ -11,20 +15,20 @@ export class LogInComponent implements OnInit {
   userName: string;
   userPassword: string;
   link: string;
-
-  constructor(private _router: Router) {
-    this.link = "";
+  
+  constructor(private apollo: Apollo, private router: Router, private mainservice: MainServiceService) {
+    this.link = "/PersonProfile";
     this.userName = "";
     this.userPassword = "";
    }
 
   ngOnInit() {
+  
   }
 
   AcceptButton(){
-    var isButtonChecked = this.isRadioButtonChecked();
-    if (this.userName != "" && this.userPassword != "" && isButtonChecked){
-        
+    if (this.userName != "" && this.userPassword != ""){
+        this.login();
     }else{
       this.textChange('userName', 'userNameError');
       this.textChange('userPassword', 'userPassError');
@@ -58,7 +62,7 @@ export class LogInComponent implements OnInit {
   handleChangeClient(evt) {
     var target = evt.target;
     if (target.checked) {
-      this.link = "/PersonRegister";
+      this.link = "/PersonProfile";
       var clientButton = document.getElementById("client") as HTMLLabelElement;
       var enterpriseButton = document.getElementById("enterprise") as HTMLLabelElement;
       clientButton.style.color = "black";
@@ -69,7 +73,7 @@ export class LogInComponent implements OnInit {
   handleChangeEnterprise(evt) {
     var target = evt.target;
     if (target.checked) {
-      this.link = "/EnterpriseRegister";
+      this.link = "/EnterpriseProfile";
       var clientButton = document.getElementById("client") as HTMLLabelElement;
       var enterpriseButton = document.getElementById("enterprise") as HTMLLabelElement;
       clientButton.style.color = "black";
@@ -80,6 +84,51 @@ export class LogInComponent implements OnInit {
   saveData(tagName: string, data: string){
     if (tagName == "userName") this.userName = data;
     else this.userPassword = data;
+  }
+
+  login() {
+    if (this.link == "/PersonProfile") {
+      this.apollo.query({
+        query: personaQuery,
+        variables: {
+          nombreusuario: this.userName,
+          contrasenia: this.userPassword
+        } 
+      }).subscribe(data => {
+        if (data.data['personaLogin'] != null) { 
+          this.mainservice.logindata = data.data['personaLogin'];
+          this.router.navigate([this.link]);
+        } else {
+          this.WrongData('userName', 'userNameError');
+          this.WrongData('userPassword', 'userPassError');
+        }
+      });
+    } else {
+      this.apollo.query({
+        query: empresaQuery,
+        variables: {
+          nombreusuario: this.userName,
+          contrasenia: this.userPassword
+        } 
+      }).subscribe(data => {
+        if (data.data['empresaLogin'] != null) { 
+          this.mainservice.logindata = data.data['empresaLogin'];
+          this.router.navigate([this.link]);
+        } else {
+          this.WrongData('userName', 'userNameError');
+          this.WrongData('userPassword', 'userPassError');
+        }
+      });
+    }
+  }
+
+  WrongData(tagName: string, errorTag: string){
+    var element = (document.getElementById(tagName) as HTMLInputElement);
+    element.className += " is-invalid";
+    var errorElement = (document.getElementById(errorTag) as HTMLLabelElement); 
+    errorElement.className = " invalid-feedback";
+    errorElement.style.marginLeft = "9px";
+    errorElement.textContent = "Nombre de usuario o contraseña incorrectos"
   }
 
 }

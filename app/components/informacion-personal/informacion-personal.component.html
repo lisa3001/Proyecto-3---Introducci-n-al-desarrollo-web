@@ -1,0 +1,201 @@
+<div class="container-fluid" id="advanced-search-form" style="margin-top: 3%;">
+    <div>
+        <span>Información personal</span>
+        <a href="#addEmployeeModal" data-toggle="modal"><img class="iconoEditar" src="assets/images/editar.png"
+                alt="icono editar"></a>
+    </div>
+    <hr class="divider">
+    <div class="container-fluid contenedor">
+        <div id="contenedorImagen">
+            <div class="imgUp">
+                <div class="imagePreview"></div>
+                <label class="btn btnRegistrar btn-primary btn-responsive">
+                    Cargar imagen<input type="file" class="uploadFile img" value="Upload Photo"
+                        style="width: 0px;height: 0px;overflow: hidden;">
+                </label>
+            </div><!-- col-2 -->
+        </div>
+        <div id="contenedorInformacion">
+            <form style="color: black;">
+                <div class="form-group">
+                    <label for="primer-nombre">Nombre</label>
+                    <input type="text" class="form-control" placeholder="Nombre" id="primer-nombre" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="primer-apellido">Primer apellido</label>
+                    <input type="text" class="form-control" placeholder="Primer apellido" id="primer-apellido" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="segundo-apellido">Segundo Apellido</label>
+                    <input type="text" class="form-control" placeholder="Segundo Apellido" id="segundo-apellido"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="nacimiento">Fecha de nacimiento</label>
+                    <input type="text" class="form-control" placeholder="Fecha de nacimiento" id="nacimiento" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="nacionalidad">Nacionalidad</label>
+                    <input type="text" class="form-control" placeholder="Nacionalidad" id="nacionalidad" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="text" class="form-control" placeholder="Correo Electrónico" id="correo" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="telefono1">Teléfono 1</label>
+                    <input type="text" class="form-control" placeholder="Teléfono 1" id="telefono1" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="telefono2">Teléfono 2</label>
+                    <input type="text" class="form-control" placeholder="Teléfono 2" id="telefono2" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="sitio-web">Sitio web</label>
+                    <input type="text" class="form-control" placeholder="Sitio web" id="sitio-web" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="provincia">Provincia</label>
+                    <div id="provinciaDropdown" class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle disabled dropdowUbicacion" type="button"
+                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            aria-disabled="true">
+                            Provincia
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="canton">Cantón</label>
+                    <div id="cantonDropdown" class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle disabled dropdowUbicacion" type="button"
+                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            aria-disabled="true">
+                            Cantón
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="distrito">Distrito</label>
+                    <div id="distritoDropdown" class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle disabled dropdowUbicacion" type="button"
+                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            aria-disabled="true">
+                            Distrito
+                        </button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="addEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar información personal</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="contenedorInformacion">
+                            <form style="color: black;">
+                                <div class="form-group">
+                                    <label for="primer-nombre">Nombre</label>
+                                    <input type="text" class="form-control" placeholder="Nombre" id="primer-nombre">
+                                </div>
+                                <div class="form-group">
+                                    <label for="primer-apellido">Primer apellido</label>
+                                    <input type="text" class="form-control" placeholder="Primer apellido"
+                                        id="primer-apellido">
+                                </div>
+                                <div class="form-group">
+                                    <label for="segundo-apellido">Segundo Apellido</label>
+                                    <input type="text" class="form-control" placeholder="Segundo Apellido"
+                                        id="segundo-apellido">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nacimiento">Fecha de nacimiento</label>
+                                    <input type="text" class="form-control" placeholder="Fecha de nacimiento"
+                                        id="nacimiento">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nacionalidad">Nacionalidad</label>
+                                    <input type="text" class="form-control" placeholder="Nacionalidad"
+                                        id="nacionalidad">
+                                </div>
+                                <div class="form-group">
+                                    <label for="correo">Correo Electrónico</label>
+                                    <input type="text" class="form-control" placeholder="Correo Electrónico"
+                                        id="correo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono1">Teléfono 1</label>
+                                    <input type="text" class="form-control" placeholder="Teléfono 1" id="telefono1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono2">Teléfono 2</label>
+                                    <input type="text" class="form-control" placeholder="Teléfono 2" id="telefono2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sitio-web">Sitio web</label>
+                                    <input type="text" class="form-control" placeholder="Sitio web" id="sitio-web">
+                                </div>
+                                <div class="form-group">
+                                    <label for="provincia">Provincia</label>
+                                    <div id="provinciaDropdown" class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle dropdowUbicacion" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Provincia
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="canton">Cantón</label>
+                                    <div id="cantonDropdown" class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle dropdowUbicacion" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Cantón
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="distrito">Distrito</label>
+                                    <div id="distritoDropdown" class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle dropdowUbicacion" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Distrito
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="submit" class="btn btnRegistrar btn-success" value="Guardar Cambios">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

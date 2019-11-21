@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery/dist/jquery.min.js'
 import { Router } from '@angular/router';
+import { MainServiceService } from 'src/app/services/main-service.service';
 
 @Component({
   selector: 'app-register',
@@ -8,18 +9,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  logged: any;
 
   userName: string;
   userPassword: string;
   link: string;
 
-  constructor(private _router: Router) { 
+  constructor(private _router: Router, private mainservice: MainServiceService) { 
     this.link = "/Register";
     this.userName = "";
     this.userPassword = "";
+    this.logged = mainservice.logindata;
   }
 
   ngOnInit() {
+    console.log(this.logged);
   }
 
   AcceptButton(){
