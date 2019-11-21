@@ -15,6 +15,8 @@ export class MainServiceService {
   paises: any;
   tiposdeinstituciones: any;
 
+  imagenGuardada: String;
+
   constructor(private apolo: Apollo) { 
     this.apolo.query({
       query: direccionesQuery
