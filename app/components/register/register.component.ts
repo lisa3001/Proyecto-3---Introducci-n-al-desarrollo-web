@@ -21,10 +21,11 @@ export class RegisterComponent implements OnInit {
     this.link = "/Register";
     this.userName = "";
     this.userPassword = "";
-    this.logged = mainservice.logindata;
+    this.logged = this.mainservice.logindata;
   }
 
   ngOnInit() {
+    
   }
 
   AcceptButton(){

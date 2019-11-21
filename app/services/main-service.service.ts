@@ -47,6 +47,7 @@ export class MainServiceService {
       query: paisesQuery
     }).subscribe(data => {
       this.paises = data.data['getPaises'];
+      console.log(this.paises);
     });
 
     this.apolo.query({
