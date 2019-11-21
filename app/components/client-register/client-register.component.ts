@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MainServiceService } from 'src/app/services/main-service.service';
 import * as $ from 'jquery/dist/jquery.min.js';
 import { ThrowStmt } from '@angular/compiler';
+import { Apollo } from 'apollo-angular';
+import { crearPersonaMutation } from 'src/app/queries/queries.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-register',
@@ -18,7 +21,7 @@ export class ClientRegisterComponent implements OnInit {
   surName2: string;
   email: string;
 
-  constructor(private mainservice: MainServiceService) {
+  constructor(private router: Router,private apollo: Apollo, private mainservice: MainServiceService) {
     this.countries = mainservice.paises;
     this.name = "";
     this.birthDate = "";
@@ -26,6 +29,13 @@ export class ClientRegisterComponent implements OnInit {
     this.surName2 = "";
     this.nationality = "";
     this.email = "";
+
+    this.name = "Luis";
+    this.birthDate = "2019-01-29";
+    this.surName1 = "Molina";
+    this.surName2 = "Juárez";
+    this.nationality = "Costa Rica";
+    this.email = "luisfermjua@gmail.com";
    }
 
   ngOnInit() {
@@ -36,8 +46,26 @@ export class ClientRegisterComponent implements OnInit {
     var isDateOK = this.validateDate();
     var isCountry = this.validateCountry();
     if (name != "" && this.surName2 != "" && this.surName1 != "" && this.email != "" && isDateOK && isCountry){
-
-    }else{
+      this.apollo.mutate({
+        mutation: crearPersonaMutation,
+        variables: {
+          nombreusuario: this.mainservice.logindata.username,
+          contrasenia: this.mainservice.logindata.contrasenia,
+          nombre: this.name,
+          apellido1: this.surName1,
+          apellido2: this.surName2,
+          email: this.email,
+          fechadenacimiento: this.birthDate,
+          nacionalidad: this.nationality
+        }
+      }).subscribe(data => {
+        if(data.data['crearpersona'] != null) {
+          this.router.navigate(['/PersonProfile']);
+        } else {
+          alert("Error");
+        }
+      });
+    } else {
       this.textChange('userName', 'NameError', 'Debes ingresar un nombre');
       this.textChange('surName', 'surNameError', 'Debes ingresar tu primer apellido');
       this.textChange('surName2', 'surName2Error', 'Debes ingresar tu segundo apellido.');
