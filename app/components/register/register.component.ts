@@ -11,7 +11,6 @@ import { empresaNombreUsuarioQuery, personaNombreUsuarioQuery } from 'src/app/qu
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  logged: any;
 
   userName: string;
   userPassword: string;
@@ -21,7 +20,6 @@ export class RegisterComponent implements OnInit {
     this.link = "/Register";
     this.userName = "";
     this.userPassword = "";
-    this.logged = this.mainservice.logindata;
   }
 
   ngOnInit() {
@@ -38,8 +36,8 @@ export class RegisterComponent implements OnInit {
             variables: {
               nombreusuario: this.userName
             }
-          }).subscribe(data => {
-            if (data.data['getNombresUsuarioEmpresas'] == null) {
+          }).subscribe(result => {
+            if (result.data['getNombresUsuarioEmpresas'] == null) {
               this._router.navigate([this.link]);
             } else {
               this.WrongData('userName', 'userNameError');
@@ -52,8 +50,8 @@ export class RegisterComponent implements OnInit {
             variables: {
               nombreusuario: this.userName
             }
-          }).subscribe(data => {
-            if (data.data['getNombresUsuarioPersonas'] == null) {
+          }).subscribe(result => {
+            if (result.data['getNombresUsuarioPersonas'] == null) {
               this._router.navigate([this.link]);
             } else {
               this.WrongData('userName', 'userNameError');

@@ -22,27 +22,22 @@ export class ClientRegisterComponent implements OnInit {
   email: string;
 
   constructor(private router: Router,private apollo: Apollo, private mainservice: MainServiceService) {
-    this.countries = mainservice.paises;
+    this.countries = this.mainservice.paises;
     this.name = "";
     this.birthDate = "";
     this.surName1 = "";
     this.surName2 = "";
     this.nationality = "";
     this.email = "";
-/*
-    this.name = "Luis";
-    this.birthDate = "2019-01-29";
-    this.surName1 = "Molina";
-    this.surName2 = "Juarez";
-    this.nationality = "Costa Rica";
-    this.email = "luisfermjua@gmail.com";*/
    }
 
   ngOnInit() {
     this.countries = this.mainservice.paises;
+    
   }
 
   AcceptButton(){
+    console.log(this.countries);
     var isDateOK = this.validateDate();
     var isCountry = this.validateCountry();
     if (this.name != "" && this.surName2 != "" && this.surName1 != "" && this.email != "" && isDateOK && isCountry){
@@ -58,12 +53,12 @@ export class ClientRegisterComponent implements OnInit {
           fechadenacimiento: this.birthDate,
           nacionalidad: this.nationality
         }
-      }).subscribe(data => {
-        if(data.data['crearPersona'] != null && data.data['crearPersona'].success) {
+      }).subscribe(result => {
+        if(result.data['crearPersona'] != null && result.data['crearPersona'].success) {
           this.router.navigate(['/PersonProfile']);
         } else {
-          if (data.data['crearPersona'] != null && data.data['crearPersona'].message) {
-            alert(data.data['crearPersona'].message);
+          if (result.data['crearPersona'] != null && result.data['crearPersona'].message) {
+            alert(result.data['crearPersona'].message);
           } else {
             alert("Error");
           }

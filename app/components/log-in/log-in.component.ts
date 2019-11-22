@@ -3,7 +3,7 @@ import { Apollo } from 'apollo-angular';
 import { MainServiceService } from 'src/app/services/main-service.service';
 import { personaQuery, empresaQuery } from 'src/app/queries/queries.module';
 import { Router } from '@angular/router';
-
+import { Persona, Empresa } from 'src/app/types/types.module';
 
 @Component({
   selector: 'app-log-in',
@@ -17,6 +17,7 @@ export class LogInComponent implements OnInit {
   link: string;
   
   constructor(private apollo: Apollo, private router: Router, private mainservice: MainServiceService) {
+    console.log(mainservice.direcciones);
     this.link = "/PersonProfile";
     this.userName = "";
     this.userPassword = "";
@@ -99,7 +100,7 @@ export class LogInComponent implements OnInit {
       }).subscribe(data => {
         console.log(data);
         if (data.data['personaLogin'] != null) { 
-          this.mainservice.logindata = data.data['personaLogin'];
+          this.mainservice.persona = data.data['personaLogin'] as Persona;
           this.router.navigate([this.link]);
         } else {
           this.WrongData('userName', 'userNameError');
@@ -115,7 +116,7 @@ export class LogInComponent implements OnInit {
         } 
       }).subscribe(data => {
         if (data.data['empresaLogin'] != null) { 
-          this.mainservice.logindata = data.data['empresaLogin'];
+          this.mainservice.empresa = data.data['empresaLogin'] as Empresa;
           this.router.navigate([this.link]);
         } else {
           this.WrongData('userName', 'userNameError');

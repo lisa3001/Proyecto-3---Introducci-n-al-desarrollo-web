@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MainServiceService } from 'src/app/services/main-service.service';
+import { Idioma } from 'src/app/types/types.module';
 
 @Component({
   selector: 'app-idiomas-persona',
@@ -18,9 +19,7 @@ export class IdiomasPersonaComponent implements OnInit {
     this.cont = 0;
     this.lista_idiomas = this.mainservice.idiomas;
     this.lista_niveles = this.mainservice.nivelesidioma;
-    console.log(this.lista_idiomas);
-    
-   }
+  }
 
   ngOnInit() {
     this.lista_idiomas = this.mainservice.idiomas;

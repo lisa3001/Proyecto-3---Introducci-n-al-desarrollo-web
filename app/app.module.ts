@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,12 @@ import { ClientRegisterComponent } from './components/client-register/client-reg
 import { EnterpriseRegisterComponent } from './components/enterprise-register/enterprise-register.component';
 import { EnterpriseProfileComponent } from './components/enterprise-profile/enterprise-profile.component';
 import { IdiomasPersonaComponent } from './components/idiomas-persona/idiomas-persona.component';
+import { MainServiceService } from './services/main-service.service';
+
+export function mainServiceProvider(provider: MainServiceService) {
+  console.log("hasdlasd");
+  return () => provider.init();
+}
 
 @NgModule({
   declarations: [
@@ -36,7 +42,8 @@ import { IdiomasPersonaComponent } from './components/idiomas-persona/idiomas-pe
     GraphQLModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [MainServiceService,
+    { provide: APP_INITIALIZER, useFactory: mainServiceProvider, deps: [MainServiceService], multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,58 +2,73 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { direccionesQuery, idiomasQuery, tipoinstitucionQuery, tiposoftwareQuery,
 paisesQuery, nivelesQuery } from 'src/app/queries/queries.module';
+import { Observable } from 'rxjs';
+import { Direccion, TipoSoftware, IdiomaUtil, Idioma, Persona, Empresa } from '../types/types.module';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class MainServiceService {
   logindata: any;
-  direcciones: any;
-  tiposdesoftware: any;
-  nivelesidioma: any;
-  idiomas: any;
-  paises: any;
-  tiposdeinstituciones: any;
+  direcciones: Direccion[];
+  tiposdesoftware: TipoSoftware[];
+  nivelesidioma: String[];
+  idiomas: Idioma[];
+  paises: String[];
+  tiposdeinstituciones: String[];
+  persona: Persona;
+  empresa: Empresa;
   registered: { username: string; password: string; };
 
   imagenGuardada: String;
 
-  constructor(private apolo: Apollo) { 
-    this.apolo.query({
+  constructor(private apollo: Apollo) { 
+    
+  }
+
+  public getDirecciones() {
+      return this.direcciones;
+  }
+  
+
+  async init () {
+    this.apollo.query({
       query: direccionesQuery
-    }).subscribe(data => {
-      this.direcciones = data.data['getDirecciones'];
+    }).subscribe(result => {
+      this.direcciones = result.data['getDirecciones'] as Direccion[];
+      console.log(this.direcciones);
     });
-
-    this.apolo.query({
+    
+    this.apollo.query({
       query: tiposoftwareQuery
-    }).subscribe(data => {
-      this.tiposdesoftware = data.data['getTiposSoftware'];
+    }).subscribe(result => {
+      this.tiposdesoftware = result.data['getTiposSoftware'] as TipoSoftware[];
     });
 
-    this.apolo.query({
+    this.apollo.query({
       query: nivelesQuery
-    }).subscribe(data => {
-      this.nivelesidioma = data.data['getNivelesIdioma'];
+    }).subscribe(result => {
+      this.nivelesidioma = result.data['getNivelesIdioma'] as String[];
+      
     });
 
-    this.apolo.query({
+    this.apollo.query({
       query: idiomasQuery
-    }).subscribe(data => {
-      this.idiomas = data.data['getIdiomas']; 
+    }).subscribe(result => {
+      this.idiomas = result.data['getIdiomas'] as Idioma[]; 
     });
 
-    this.apolo.query({
+    this.apollo.query({
       query: paisesQuery
-    }).subscribe(data => {
-      this.paises = data.data['getPaises'];
+    }).subscribe(result => {
+      this.paises = result.data['getPaises'] as String[];
     });
 
-    this.apolo.query({
+    this.apollo.query({
       query: tipoinstitucionQuery
-    }).subscribe(data => {
-      this.tiposdeinstituciones = data.data['getTipoInstitucion'];
+    }).subscribe(result => {
+      this.tiposdeinstituciones = result.data['getTipoInstitucion'] as String[];
     });
-
   }
 }

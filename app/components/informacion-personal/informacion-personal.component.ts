@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery/dist/jquery.min.js';
 import { MainServiceService } from 'src/app/services/main-service.service';
 import { GuardsCheckStart } from '@angular/router';
+import { Persona, Experiencia } from 'src/app/types/types.module';
 var urlImagen;
 @Component({
   selector: 'app-informacion-personal',
@@ -9,23 +10,11 @@ var urlImagen;
   styleUrls: ['./informacion-personal.component.scss']
 })
 export class InformacionPersonalComponent implements OnInit {
-  nombre:string;
-  apellido1:string;
-  apellido2:string;
-  correo:string;
-  telefono1:string;
-  telefono2:string;
-  sitio:string;
-  fechaNacimiento:string;
-  nacionalidad:string;
-  provincia:string;
-  canton:string;
-  distrito:string;
-  imagen:string;
-  username:string;
+  persona: Persona;
+  experiencias: Experiencia[];
 
   constructor(private mainservice: MainServiceService) {     
-    this.username = this.mainservice.logindata.nombreusuario;
+    this.persona = this.mainservice.persona;
   }
 
   ngOnInit() {
@@ -55,15 +44,6 @@ export class InformacionPersonalComponent implements OnInit {
           
         });
     });
-
-
-
-    this.nombre = this.mainservice.logindata.nombre;
-    this.apellido1 = this.mainservice.logindata.apellido1;
-    this.apellido2 = this.mainservice.logindata.apellido2;
-    this.correo = this.mainservice.logindata.email;
-    this.nacionalidad = this.mainservice.logindata.nacionalidad;
-    this.fechaNacimiento = this.mainservice.logindata.fechadenacimiento;
   }
 
   GuardarCambios(){
@@ -79,7 +59,7 @@ export class InformacionPersonalComponent implements OnInit {
     var provincia = (document.getElementById("provinciaDropdown") as HTMLSelectElement).value;
     var canton = (document.getElementById("cantonDropdown") as HTMLSelectElement).value;
     var distrito = (document.getElementById("distritoDropdown") as HTMLSelectElement).value;
-    
+    /*
     this.nombre = nombre;
     this.apellido1 = apellido1;
     this.apellido2 = apellido2;
@@ -92,7 +72,7 @@ export class InformacionPersonalComponent implements OnInit {
     this.provincia = provincia;
     this.canton = canton;
     this.distrito = distrito;
-    console.log(urlImagen)
+    console.log(urlImagen)*/
   }
 
 }

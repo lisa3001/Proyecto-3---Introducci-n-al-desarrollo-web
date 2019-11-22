@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular';
 import { Router } from '@angular/router';
 import { MainServiceService } from 'src/app/services/main-service.service';
 import { crearEmpresaMutation } from 'src/app/queries/queries.module';
+import { Empresa } from 'src/app/types/types.module';
 
 @Component({
   selector: 'app-enterprise-register',
@@ -76,8 +77,22 @@ export class EnterpriseRegisterComponent implements OnInit {
         email: this.enterpriseEmail,
         nombre: this.enterpriseName
       }
-    }).subscribe(data => {
-      this.router.navigate(['/EnterpriseProfile']);
+    }).subscribe(result => {
+      if(result.data['crearEmpresa'] != null && result.data['crearEmpresa'].success) {
+        this.mainservice.empresa = {
+          nombreusuario: this.registerInfo.username,
+          contrasenia: this.registerInfo.password,
+          email: this.enterpriseEmail,
+          nombre: this.enterpriseName
+        } as Empresa;
+        this.router.navigate(['/EnterpriseProfile']);
+        } else {
+          if (result.data['crearEmpresa'] != null && result.data['crearEmpresa'].message) {
+            alert(result.data['crearEmpresa'].message);
+          } else {
+            alert("Error");
+          }
+      }
     });
   }
 }
