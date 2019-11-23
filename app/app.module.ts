@@ -26,7 +26,6 @@ const ENTRYCOMPONENTS = [
 import { FormsModule } from '@angular/forms';
 
 export function mainServiceProvider(provider: MainServiceService) {
-  console.log("hasdlasd");
   return () => provider.init();
 };
 

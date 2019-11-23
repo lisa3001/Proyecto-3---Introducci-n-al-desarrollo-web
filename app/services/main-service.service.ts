@@ -31,13 +31,12 @@ export class MainServiceService {
   constructor(private apollo: Apollo) {
     this.persona = {nombreusuario: "LuisMJ", contrasenia: "luisito139", nombre: "Luis", apellido1: "Molina",
       apellido2: "Juárez", email: "luisfermjua@gmail.com", fechadenacimiento: "1997-11-20",
-      nacionalidad: "Costa Rica", provincia: " LIMON", canton: " LIMON", distrito: "Matina"} as Persona;
+      nacionalidad: "Costa Rica", provincia: " LIMON", canton: " MATINA", distrito: "Matina"} as Persona;
   }
 
   public getDirecciones() {
       return this.direcciones;
   }
-  
 
   async init () {
     this.apollo.query({
