@@ -16,11 +16,18 @@ import { EnterpriseRegisterComponent } from './components/enterprise-register/en
 import { EnterpriseProfileComponent } from './components/enterprise-profile/enterprise-profile.component';
 import { IdiomasPersonaComponent } from './components/idiomas-persona/idiomas-persona.component';
 import { MainServiceService } from './services/main-service.service';
+import { ExperienciaPersonaComponent } from './components/experiencia-persona/experiencia-persona.component';
+import { DominioSoftwareComponent } from './components/dominio-software/dominio-software.component';
+
+const ENTRYCOMPONENTS = [
+  ExperienciaPersonaComponent,
+  InformacionPersonalComponent
+];
 import { FormsModule } from '@angular/forms';
 
 export function mainServiceProvider(provider: MainServiceService) {
   return () => provider.init();
-}
+};
 
 @NgModule({
   declarations: [
@@ -29,12 +36,13 @@ export function mainServiceProvider(provider: MainServiceService) {
     EnterpriseRegisterComponent,
     RegisterComponent,
     ClientRegisterComponent,
-    InformacionPersonalComponent,
     HeaderComponentComponent,
     PerfilPersonaComponent,
     FooterComponentComponent,
     EnterpriseProfileComponent,
-    IdiomasPersonaComponent
+    IdiomasPersonaComponent,
+    ENTRYCOMPONENTS,
+    DominioSoftwareComponent
   ],
   imports: [
     BrowserModule,
@@ -43,8 +51,8 @@ export function mainServiceProvider(provider: MainServiceService) {
     HttpClientModule,
     FormsModule
   ],
-  providers: [MainServiceService,
-    { provide: APP_INITIALIZER, useFactory: mainServiceProvider, deps: [MainServiceService], multi: true }],
-  bootstrap: [AppComponent]
+  providers: [MainServiceService,{ provide: APP_INITIALIZER, useFactory: mainServiceProvider, deps: [MainServiceService], multi: true }],
+  bootstrap: [AppComponent],
+  entryComponents: [ENTRYCOMPONENTS]
 })
 export class AppModule { }

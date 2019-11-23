@@ -97,6 +97,7 @@ export class RegisterComponent implements OnInit {
     }
     return true;
   }
+  
   handleChangeClient(evt) {
     var target = evt.target;
     if (target.checked) {

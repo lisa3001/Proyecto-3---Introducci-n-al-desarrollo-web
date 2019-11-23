@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MainServiceService } from 'src/app/services/main-service.service';
-import { Idioma } from 'src/app/types/types.module';
-
 @Component({
-  selector: 'app-idiomas-persona',
-  templateUrl: './idiomas-persona.component.html',
-  styleUrls: ['./idiomas-persona.component.scss']
+  selector: 'app-dominio-software',
+  templateUrl: './dominio-software.component.html',
+  styleUrls: ['./dominio-software.component.scss']
 })
-export class IdiomasPersonaComponent implements OnInit {
+export class DominioSoftwareComponent implements OnInit {
   lista_idiomas: any;
   lista_niveles: any;
   idiomasUsuario = [];
@@ -24,13 +22,14 @@ export class IdiomasPersonaComponent implements OnInit {
   ngOnInit() {
     this.lista_idiomas = this.mainservice.idiomas;
     this.lista_niveles = this.mainservice.nivelesidioma;
+    console.log(this.lista_idiomas);
   }
 
   removeElement(idioma: string){
     for (let i = 0; i < this.idiomasUsuario.length; i++){
       if(idioma == this.idiomasUsuario[i]){
         this.idiomasUsuario.splice(0, 1) ;
-        var text = document.getElementById("idErrorIdioma") as HTMLSelectElement;
+        var text = document.getElementById("idErrorDominio") as HTMLSelectElement;
         text.innerHTML = " ";
       }
     }
@@ -41,8 +40,8 @@ export class IdiomasPersonaComponent implements OnInit {
    buscarIdioma(idioma: string){
     for (let i = 0; i < this.idiomasUsuario.length; i++){
       if(idioma == this.idiomasUsuario[i]){
-        var text = document.getElementById("idErrorIdioma") as HTMLSelectElement;
-        text.innerHTML = "El idioma ya fue agregado";
+        var text = document.getElementById("idErrorDominio") as HTMLSelectElement;
+        text.innerHTML = "El software ya fue agregado";
         return true;
       } 
     }
@@ -50,7 +49,7 @@ export class IdiomasPersonaComponent implements OnInit {
    }
 
  deleteButton(id){
-  var tableIdiomasAgregados = document.getElementById("tBody") as HTMLSelectElement;
+  var tableIdiomasAgregados = document.getElementById("contenedorDominios") as HTMLSelectElement;
   var tr = document.getElementById(id) as HTMLSelectElement;
   console.log(tr);
   var tdId = id.concat(id);
@@ -60,18 +59,19 @@ export class IdiomasPersonaComponent implements OnInit {
 
 
  }
+
   addButton(){
     
-    var tableIdiomasAgregados = document.getElementById("tBody") as HTMLSelectElement;
-    var idioma = document.getElementById("idiomaOption") as HTMLSelectElement;
+    var tableIdiomasAgregados = document.getElementById("contenedorDominios") as HTMLSelectElement;
+    var idioma = document.getElementById("softwareOption") as HTMLSelectElement;
     var selectedIdioma = idioma.value;
     
     if(!this.buscarIdioma(selectedIdioma) && selectedIdioma != ""){
-      var text = document.getElementById("idErrorIdioma") as HTMLSelectElement;
+      var text = document.getElementById("idErrorDominio") as HTMLSelectElement;
       text.innerHTML = " ";
 
       this.idiomasUsuario.push(selectedIdioma);
-      var nivel = document.getElementById("nivelOption") as HTMLSelectElement;
+      var nivel = document.getElementById("tipoOption") as HTMLSelectElement;
       var selectedNIvel = nivel.value;
 
       var tr = document.createElement("tr");
