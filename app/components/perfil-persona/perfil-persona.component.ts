@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentRef } from '@angular/core';
 import {ComponentFactoryResolver, ViewChild, ViewContainerRef} from '@angular/core';
 import { ExperienciaPersonaComponent } from 'src/app/components/experiencia-persona/experiencia-persona.component'
 import { Persona, Experiencia, Direccion } from 'src/app/types/types.module';
@@ -19,9 +19,11 @@ export class PerfilPersonaComponent implements OnInit {
   estrabajoactual: string;
   nuevaexperiencia:Experiencia;
   componentes = [];
-
+  index: number = 0;
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
-    private mainservice: MainServiceService) { }
+    private mainservice: MainServiceService) {
+
+    }
 
   ngOnInit() {
   }
@@ -29,12 +31,32 @@ export class PerfilPersonaComponent implements OnInit {
   InsertarExperiencia(){
     
       const factory = this.componentFactoryResolver.resolveComponentFactory(ExperienciaPersonaComponent);
-      this.contenedorExperienciasPersona.createComponent(factory);
+      let componentRef: ComponentRef<ExperienciaPersonaComponent> = this.contenedorExperienciasPersona.createComponent(factory);
+      let currentComponent = componentRef.instance;
+
+      currentComponent.selfRef = currentComponent;
+      currentComponent.index = ++this.index;
+      // prividing parent Component reference to get access to parent class methods
+      currentComponent.compInteraction = this;
+
+      //this.contenedorExperienciasPersona
       this.closebutton.nativeElement.click();
-      this.componentes.push(factory);
-      console.log(factory);
-    
+      this.componentes.push(componentRef);
+      //console.log(component);
+      
   }
+  remove(index: number) {
+
+    if (this.contenedorExperienciasPersona.length < 1)
+        return;
+    let componentRef = this.componentes.filter(x => x.instance.index == index)[0];
+    let component: ExperienciaPersonaComponent = <ExperienciaPersonaComponent>componentRef.instance;
+    let vcrIndex: number = this.contenedorExperienciasPersona.indexOf(componentRef);
+    // removing component from container
+    this.contenedorExperienciasPersona.remove(vcrIndex);
+
+    this.componentes = this.componentes.filter(x => x.instance.index !== index);
+}
 
   textChange(tagName: string, errorMessage: string) {
     var element = (document.getElementById(tagName) as HTMLInputElement);

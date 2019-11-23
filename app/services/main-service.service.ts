@@ -4,6 +4,7 @@ import { direccionesQuery, idiomasQuery, tipoinstitucionQuery, tiposoftwareQuery
 paisesQuery, nivelesQuery, Provincia, Canton, Distrito } from 'src/app/queries/queries.module';
 import { Observable } from 'rxjs';
 import { Direccion, TipoSoftware, IdiomaUtil, Idioma, Persona, Empresa } from '../types/types.module';
+import { PerfilPersonaComponent } from '../components/perfil-persona/perfil-persona.component';
 
 @Injectable({
   providedIn: 'root'
@@ -28,9 +29,15 @@ export class MainServiceService {
 
   imagenGuardada: String;
 
+
+  //componentesExperienciasPersona = [];
+  
   constructor(private apollo: Apollo) {
     this.empresa = {nombreusuario: "IntelCO", contrasenia: "intel1234", nombre: "Intel",
      telefono1: "61638663", email: "empresa@hello.com"} as Empresa;
+
+     this.persona = {nombreusuario: "IntelCO", contrasenia: "intel1234", nombre: "Luis",
+     telefono1: "61638663", email: "empresa@hello.com", apellido1: "Molina", apellido2: "Juarez", nacionalidad: "Costa Rica", fechadenacimiento: "1997-11-20"} as Persona;
   }
 
   public getDirecciones() {
