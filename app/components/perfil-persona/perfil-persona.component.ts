@@ -17,12 +17,9 @@ export class PerfilPersonaComponent implements OnInit {
   fechaingresoedit: string;
   fechasalidaedit: string;
   estrabajoactual: string;
-  nuevaexperiencia:Experiencia
-  componentes = [
-    {
-      component:ExperienciaPersonaComponent
-    }
-  ];
+  nuevaexperiencia:Experiencia;
+  componentes = [];
+
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
     private mainservice: MainServiceService) { }
 
@@ -30,11 +27,13 @@ export class PerfilPersonaComponent implements OnInit {
   }
 
   InsertarExperiencia(){
-    if(this.validateCampos()){
+    
       const factory = this.componentFactoryResolver.resolveComponentFactory(ExperienciaPersonaComponent);
-      this.contenedorExperienciasPersona.createComponent(factory)
+      this.contenedorExperienciasPersona.createComponent(factory);
       this.closebutton.nativeElement.click();
-    }
+      this.componentes.push(factory);
+      console.log(factory);
+    
   }
 
   textChange(tagName: string, errorMessage: string) {
