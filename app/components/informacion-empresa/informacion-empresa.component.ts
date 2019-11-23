@@ -116,7 +116,7 @@ export class InformacionEmpresaComponent implements OnInit {
     this.textChange("nombre-empresa", "Ingrese un nombre");
     this.textChange("correo", "Ingrese su primer apellido");
     if (this.empresaedit.nombre == "" || 
-    this.empresaedit.email == "") {
+    this.empresaedit.email == "" || !this.empresaedit.email.includes("@")) {
       return false;
     }
     return true;
@@ -130,7 +130,7 @@ export class InformacionEmpresaComponent implements OnInit {
 
   textChange(tagName: string, errorMessage: string) {
     var element = (document.getElementById(tagName) as HTMLInputElement);
-    if (element.value.trim() == ""){
+    if (element.value.trim() == "" || (tagName == "correo" && !element.value.trim().includes("@"))){
       element.className += " is-invalid";
       element.placeholder = errorMessage;
     } else {

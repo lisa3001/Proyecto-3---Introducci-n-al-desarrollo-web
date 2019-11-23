@@ -142,7 +142,7 @@ export class InformacionPersonalComponent implements OnInit {
     this.textChange("segundo-apellido", "Ingrese su segundo apellido");
     this.textChange("correo", "Ingrese un correo válido");
     if (this.personaedit.nombre == "" || this.personaedit.apellido1 == "" || this.personaedit.apellido2 == "" || 
-    this.personaedit.email == "" || this.personaedit.nacionalidad == "") {
+    this.personaedit.email == "" || this.personaedit.nacionalidad == "" || !this.personaedit.email.includes("@")) {
       return false;
     }
     return true;
@@ -156,7 +156,7 @@ export class InformacionPersonalComponent implements OnInit {
 
   textChange(tagName: string, errorMessage: string) {
     var element = (document.getElementById(tagName) as HTMLInputElement);
-    if (element.value.trim() == ""){
+    if (element.value.trim() == "" || (tagName == "correo" && !element.value.trim().includes("@"))){
       element.className += " is-invalid";
       element.placeholder = errorMessage;
     } else {
