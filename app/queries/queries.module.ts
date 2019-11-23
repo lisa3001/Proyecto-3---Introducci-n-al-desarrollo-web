@@ -124,9 +124,31 @@ query{
 }`;
 
 
+export const actualizarPersonaMutation = gql`
+mutation ActualizarPersona($persona: PersonaInput) {
+  actualizarPersona(persona: $persona) {
+    success
+    message
+  }
+}`;
 
+export const actualizarPersonaImagenMutation = gql`
+mutation ActualizarPersonaImage($nombreusuario: String, $fotografia: String) {
+  actualizarPersonaImage(nombreusuario: $nombreusuario, fotografia: $fotografia) {
+    success
+    message
+  }
+}`;
 
-
+/*mutation ActualizarPersona($nombreusuario: String!, $contrasenia: String!, $apellido1: String!,
+  $apellido2: String!, $email: String!, $nombre: String!, $fechadenacimiento: String!, $nacionalidad: String!,
+  $provincia: String, $canton: String, $distrito: String, $telefono1: String, $telefono2: String, $sitioweb: String, $fotografia: String) {
+  actualizarPersona(persona: {nombreusuario: $nombreusuario, contrasenia: $contrasenia, apellido1: $apellido1,
+    apellido2: $apellido2, email: $email, nombre: $nombre, fechadenacimiento: $fechadenacimiento, nacionalidad: $nacionalidad,
+    provincia: $provincia, canton: $canton, distrito: $distrito, telefono1: $telefono1, telefono2: $telefono2, sitioweb: $sitioweb, fotografia: $fotografia}) {
+    success
+    message
+  }*/ 
 export const crearEmpresaMutation = gql`
 mutation CrearEmpresa($nombreusuario: String!, $contrasenia: String!, $email: String!, $nombre: String!) {
   crearEmpresa(nombreusuario: $nombreusuario, contrasenia: $contrasenia, email: $email, nombre: $nombre) {

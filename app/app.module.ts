@@ -19,7 +19,6 @@ import { MainServiceService } from './services/main-service.service';
 import { FormsModule } from '@angular/forms';
 
 export function mainServiceProvider(provider: MainServiceService) {
-  console.log("hasdlasd");
   return () => provider.init();
 }
 
