@@ -1,30 +1,137 @@
-
 <app-header-component></app-header-component>
-<div class="container-fluid contenedor">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" id="informacion-tab" data-toggle="tab" href="#informacion" role="tab" aria-controls="informacion"
-                    aria-selected="true">Información</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="idiomas-tab" data-toggle="tab" href="#idiomas" role="tab" aria-controls="idiomas"
-                    aria-selected="false">Idiomas</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="experiencia-tab" data-toggle="tab" href="#experiencia" role="tab" aria-controls="experiencia"
-                    aria-selected="false">Experiencia</a>
-                </li>
-              </ul>
-              <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="informacion" role="tabpanel" aria-labelledby="informacion-tab">
-                    <app-informacion-personal></app-informacion-personal>
-                </div>
-                <div class="tab-pane fade" id="idiomas" role="tabpanel" aria-labelledby="idiomas-tab">
-                    <app-idiomas-persona></app-idiomas-persona>
-                </div>
-                <div class="tab-pane fade" id="experiencia" role="tabpanel" aria-labelledby="experiencia-tab">
+<ul class="nav nav-tabs" id="myTab" role="tablist" style="height: 8%; background-color: #f0f0f0;">
+  <li class="nav-item">
+    <a class="nav-link active" id="informacion-tab" data-toggle="tab" href="#informacion" role="tab"
+      aria-controls="informacion" aria-selected="true">Información</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="idiomas-tab" data-toggle="tab" href="#idiomas" role="tab" aria-controls="idiomas"
+      aria-selected="false">Idiomas</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="experiencia-tab" data-toggle="tab" href="#experiencia" role="tab"
+      aria-controls="experiencia" aria-selected="false">Experiencia</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="estudios-tab" data-toggle="tab" href="#estudios" role="tab" aria-controls="estudios"
+      aria-selected="false">Estudios</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="certificaciones-tab" data-toggle="tab" href="#certificaciones" role="tab"
+      aria-controls="certificaciones" aria-selected="false">Certificaciones</a>
+  </li>
+</ul>
+<div class="container-fluid contenedorInformacion">
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="informacion" role="tabpanel" aria-labelledby="informacion-tab">
+      <app-informacion-personal></app-informacion-personal>
+    </div>
+    <div class="tab-pane fade" id="idiomas" role="tabpanel" aria-labelledby="idiomas-tab">
+      <app-idiomas-persona></app-idiomas-persona>
+    </div>
+    <div class="tab-pane fade" id="experiencia" role="tabpanel" aria-labelledby="experiencia-tab">
+      <div class="container-fluid" style="min-height: 480px;">
+        <div class="row">
+          <a title="Agregar experiencia" style="margin-left: 65%; margin-top: 2%; margin-bottom: 1%;"
+            href="#agregarNuevaExperiencia" data-toggle="modal"><img class="iconoEditar" src="assets/images/agregar.png"
+              alt="icono agregar">
+          </a>
+          <a title="Guardar cambios" style="margin-left: 2%; margin-top: 2%; margin-bottom: 1%;"
+            href="#agregarNuevaExperiencia" data-toggle="modal"><img class="iconoEditar" src="assets/images/guardar.png"
+              alt="icono guardar cambios">
+          </a>
+          <a title="Descartar cambios" style="margin-left: 2%; margin-top: 2%; margin-bottom: 1%;"
+            href="#agregarNuevaExperiencia" data-toggle="modal"><img class="iconoEditar"
+              src="assets/images/descartar.png" alt="icono editar">
+          </a>
+          <div id="agregarNuevaExperiencia" class="modal fade">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form>
+                  <div class="modal-header">
+                    <h4 class="modal-title">Agregar experiencia</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="agregar-experiencia-tab" data-toggle="tab" href="#agregar-experiencia" role="tab"
+                          aria-controls="agregar-experiencia" aria-selected="true">Experiencia</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="agregar-dominio-tab" data-toggle="tab" href="#agregar-dominio" role="tab"
+                          aria-controls="agregar-dominio" aria-selected="false">Dominios</a>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                      <div class="tab-pane fade show active" id="agregar-experiencia" role="tabpanel" aria-labelledby="agregar-experiencia-tab">
+                        <div id="advanced-search-form" style="width:800px;">
+                          <form style="color: black; width:700px;">
+                            <div class="form-group">
+                              <label for="nombre-empresa">Empresa</label>
+                              <input type="text" class="form-control" placeholder="Empresa" id="empresa-add"
+                                value="{{empresa}}">
+                            </div>
+                            <div class="form-group">
+                              <label for="nombre-cargo">Cargo</label>
+                              <input type="text" class="form-control" placeholder="Cargo" id="cargo-add"
+                                value="{{cargo}}">
+                            </div>
+                            <div class="form-group">
+                              <label for="inicio">Fecha de ingreso</label>
+                              <input type="text" class="form-control" placeholder="Fecha de ingreso"
+                                id="fecha-ingreso-add" value="{{fechaIngreso}}">
+                            </div>
+                            <div class="form-group">
+                              <label for="salida">Fecha de salida</label>
+                              <input type="text" class="form-control" placeholder="Fecha de salida"
+                                id="fecha-salida-add" value="{{fechaSalida}}">
+                            </div>
+                            <div class="form-group">
+                              <label for="desc">Descripción</label>
+                              <input type="text" class="form-control" placeholder="Descripción" id="descripcion-add"
+                                value="{{descripcion}}" style="overflow-y:auto;">
+                            </div>
+                            <div class="form-group">
+                              <label for="trabajo">¿Es su trabajo actual?</label>
+                              <div class="radio">
+                                <label class="radio-inline">
+                                  <input type="radio" name="optradio">Sí</label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="optradio">No</label>
+                              </div>
+                            </div>
+                            <div class="clearfix"></div>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="tab-pane fade" id="agregar-dominio" role="tabpanel" aria-labelledby="agregar-dominio-tab">
+                        <app-dominio-software></app-dominio-software>
+                      </div>
 
-                </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="button" class="btn btnRegistrar btn-success" (click)="InsertarExperiencia()"
+                      value="Guardar Cambios">
+                    <button type="button" #closebutton data-dismiss="modal" style="display:none;"></button>
+                  </div>
+                </form>
               </div>
-    <app-footer-component></app-footer-component> 
+            </div>
+          </div>
+        </div>
+        <div class="row" #contenedorExperienciasPersona>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="estudios" role="tabpanel" aria-labelledby="estudios-tab">
+
+    </div>
+    <div class="tab-pane fade" id="certificaciones" role="tabpanel" aria-labelledby="certificaciones-tab">
+
+    </div>
+  </div>
+  <app-footer-component></app-footer-component>
 </div>

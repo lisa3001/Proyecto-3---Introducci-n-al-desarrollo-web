@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="table-wrapper table-responsive-md col-md-12">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select class="form-control" id="softwareOption" ng-model="lista_idiomas"
+                                 required>
+                                <option *ngFor="let idioma of lista_idiomas" ngValue="idioma">{{idioma.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="tipoOption" ng-model="lista_niveles">
+                                <option *ngFor="let nivel of lista_niveles" ngValue="nivel">{{nivel}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" id="addButtonId" class="btn btn-info add-new" (click)="addButton()"><i
+                                    class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <p class="errorAgregar" id="idErrorDominio"></p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Software</th>
+                            <th>Tipo</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenedorDominios">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
