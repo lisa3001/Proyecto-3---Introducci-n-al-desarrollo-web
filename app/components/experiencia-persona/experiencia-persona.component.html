@@ -1,0 +1,128 @@
+<div class="container-fluid" id="advanced-search-form">
+    <div>
+        <span>Experiencia profesional</span>
+        <a href="#editarExperiencia" data-toggle="modal"><img class="iconoEditar" src="assets/images/editar.png"
+                alt="icono editar"></a>
+        <a href="#"><img class="iconoEditar" src="assets/images/eliminar.png" alt="icono eliminar"
+                style="margin-left: 6px;"></a>
+    </div>
+    <hr class="divider">
+    <div id="contenedorInformacion">
+        <form style="color: black;">
+            <div class="form-group">
+                <label for="nombre-empresa">Empresa</label>
+                <input type="text" class="form-control" placeholder="Empresa" id="empresa-info" value="{{empresa}}"
+                    disabled>
+            </div>
+            <div class="form-group">
+                <label for="nombre-cargo">Cargo</label>
+                <input type="text" class="form-control" placeholder="Cargo" id="cargo-info" value="{{cargo}}" disabled>
+            </div>
+            <div class="form-group">
+                <label for="inicio">Fecha de ingreso</label>
+                <input type="text" class="form-control" placeholder="Fecha de ingreso" id="fecha-ingreso-info"
+                    value="{{fechaIngreso}}" disabled>
+            </div>
+            <div class="form-group">
+                <label for="salida">Fecha de salida</label>
+                <input type="text" class="form-control" placeholder="Fecha de salida" id="fecha-salida-info"
+                    value="{{fechaSalida}}" disabled>
+            </div>
+            <div class="form-group">
+                <label for="desc">Descripción</label>
+                <input type="text" class="form-control" placeholder="Descripción" id="descripcion-info"
+                    value="{{descripcion}}" style="overflow-y:auto;" disabled>
+            </div>
+            <div class="form-group">
+                <label for="trabajo">¿Es su trabajo actual?</label>
+                <div class="radio" aria-disabled="true">
+                    <label class="radio-inline">
+                        <input type="radio" name="optradio" disabled>Sí</label>
+                    <label class="radio-inline">
+                        <input type="radio" name="optradio" disabled>No</label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <input type="button" style="color: white;" class="btn btnRegistrar" value="Ver dominios">
+        </form>
+    </div>
+
+    <div id="editarExperiencia" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Editar experiencia</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="agregarExperiencia-tab" data-toggle="tab"
+                                    href="#agregarExperiencia" role="tab" aria-controls="agregarExperiencia"
+                                    aria-selected="true">Experiencia</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="dominios-tab" data-toggle="tab" href="#dominios" role="tab"
+                                    aria-controls="dominios" aria-selected="false">Dominios</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="agregarExperiencia" role="tabpanel"
+                                aria-labelledby="agregarExperiencia-tab">
+                                <div id="advanced-search-form2">
+                                    <form style="color: black;">
+                                        <div class="form-group">
+                                            <label for="nombre-empresa">Empresa</label>
+                                            <input type="text" class="form-control" placeholder="Empresa"
+                                                id="empresa-info" value="{{empresa}}" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nombre-cargo">Cargo</label>
+                                            <input type="text" class="form-control" placeholder="Cargo" id="cargo-info"
+                                                value="{{cargo}}" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inicio">Fecha de ingreso</label>
+                                            <input type="text" class="form-control" placeholder="Fecha de ingreso"
+                                                id="fecha-ingreso-info" value="{{fechaIngreso}}" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="salida">Fecha de salida</label>
+                                            <input type="text" class="form-control" placeholder="Fecha de salida"
+                                                id="fecha-salida-info" value="{{fechaSalida}}" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="desc">Descripción</label>
+                                            <input type="text" class="form-control" placeholder="Descripción"
+                                                id="descripcion-info" value="{{descripcion}}" style="overflow-y:auto;"
+                                                disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="trabajo">¿Es su trabajo actual?</label>
+                                            <div class="radio" aria-disabled="true">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="optradio" disabled>Sí</label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="optradio" disabled>No</label>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="dominios" role="tabpanel" aria-labelledby="dominios-tab">
+                                <app-dominio-software></app-dominio-software>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                        <input type="button" class="btn btnRegistrar btn-success" (click)="GuardarCambios()"
+                            value="Guardar Cambios">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
