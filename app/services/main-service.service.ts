@@ -29,9 +29,8 @@ export class MainServiceService {
   imagenGuardada: String;
 
   constructor(private apollo: Apollo) {
-    this.persona = {nombreusuario: "LuisMJ", contrasenia: "luisito139", nombre: "Luis", apellido1: "Molina",
-      apellido2: "Juárez", email: "luisfermjua@gmail.com", fechadenacimiento: "1997-11-20",
-      nacionalidad: "Costa Rica", provincia: " LIMON", canton: " MATINA", distrito: "Matina"} as Persona;
+    this.empresa = {nombreusuario: "IntelCO", contrasenia: "intel1234", nombre: "Intel",
+     telefono1: "61638663", email: "empresa@hello.com"} as Empresa;
   }
 
   public getDirecciones() {

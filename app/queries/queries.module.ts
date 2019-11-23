@@ -132,9 +132,25 @@ mutation ActualizarPersona($persona: PersonaInput) {
   }
 }`;
 
+export const actualizarEmpresaMutation = gql`
+mutation ActualizarEmpresa($empresa: EmpresaInput) {
+  actualizarEmpresa(empresa: $empresa) {
+    success
+    message
+  }
+}`;
+
 export const actualizarPersonaImagenMutation = gql`
 mutation ActualizarPersonaImage($nombreusuario: String, $fotografia: String) {
   actualizarPersonaImage(nombreusuario: $nombreusuario, fotografia: $fotografia) {
+    success
+    message
+  }
+}`;
+
+export const actualizarEmpresaImagenMutation = gql`
+mutation ActualizarEmpresaImage($nombreusuario: String, $logo: String) {
+  actualizarEmpresaImage(nombreusuario: $nombreusuario, logo: $logo) {
     success
     message
   }

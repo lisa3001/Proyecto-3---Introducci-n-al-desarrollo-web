@@ -24,6 +24,7 @@ const ENTRYCOMPONENTS = [
   InformacionPersonalComponent
 ];
 import { FormsModule } from '@angular/forms';
+import { InformacionEmpresaComponent } from './components/informacion-empresa/informacion-empresa.component';
 
 export function mainServiceProvider(provider: MainServiceService) {
   return () => provider.init();
@@ -42,7 +43,8 @@ export function mainServiceProvider(provider: MainServiceService) {
     EnterpriseProfileComponent,
     IdiomasPersonaComponent,
     ENTRYCOMPONENTS,
-    DominioSoftwareComponent
+    DominioSoftwareComponent,
+    InformacionEmpresaComponent
   ],
   imports: [
     BrowserModule,

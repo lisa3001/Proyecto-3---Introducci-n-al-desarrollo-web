@@ -17,7 +17,6 @@ export class LogInComponent implements OnInit {
   link: string;
   
   constructor(private apollo: Apollo, private router: Router, private mainservice: MainServiceService) {
-    console.log(mainservice.direcciones);
     this.link = "/PersonProfile";
     this.userName = "";
     this.userPassword = "";
@@ -28,7 +27,6 @@ export class LogInComponent implements OnInit {
   }
 
   AcceptButton(){
-    console.log("asd");
     if (this.userName != "" && this.userPassword != ""){
         this.login();
     }else{

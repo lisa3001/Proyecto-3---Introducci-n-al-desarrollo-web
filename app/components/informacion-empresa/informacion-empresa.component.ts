@@ -1,46 +1,36 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-//import * as $ from 'jquery/dist/jquery.min.js';
-import * as $ from 'jquery';
 import { MainServiceService } from 'src/app/services/main-service.service';
-import { Persona, Experiencia, Direccion } from 'src/app/types/types.module';
-import { Provincia, actualizarPersonaMutation, actualizarPersonaImagenMutation } from 'src/app/queries/queries.module';
+import { Empresa } from 'src/app/types/types.module';
 import { Apollo } from 'apollo-angular';
+import { actualizarEmpresaImagenMutation, actualizarEmpresaMutation } from 'src/app/queries/queries.module';
 
-var urlImagen;
 @Component({
-  selector: 'app-informacion-personal',
-  templateUrl: './informacion-personal.component.html',
-  styleUrls: ['./informacion-personal.component.scss']
+  selector: 'app-informacion-empresa',
+  templateUrl: './informacion-empresa.component.html',
+  styleUrls: ['./informacion-empresa.component.scss']
 })
-export class InformacionPersonalComponent implements OnInit {
+export class InformacionEmpresaComponent implements OnInit {
   @ViewChild('dismiss', {static: false}) dismiss: any;
-  persona: Persona;
-  fechadenacimiento: string;
-  personaedit: Persona;
-  fechadenacimientoedit: string;
+  empresaedit: Empresa;
   static apolloS: Apollo;
   static mainS: MainServiceService;
   selectedProvincia: String = "";
   selectedCanton: String = "";
   selectedDistrito: String = "";
 
-  constructor(private mainservice: MainServiceService, private apollo: Apollo) {    
-    this.fechadenacimiento = this.mainservice.persona.fechadenacimiento;
-    this.personaedit = Object.assign({}, this.mainservice.persona) as Persona;
-    this.fechadenacimientoedit = this.personaedit.fechadenacimiento;
-    InformacionPersonalComponent.apolloS = this.apollo;
-    InformacionPersonalComponent.mainS = this.mainservice;
-    
+
+  constructor(private mainservice: MainServiceService, private apollo: Apollo) {
+    this.empresaedit = Object.assign({}, mainservice.empresa);
+    InformacionEmpresaComponent.apolloS = this.apollo;
+    InformacionEmpresaComponent.mainS = this.mainservice;
   }
 
   ngOnInit() {
-    //this.filterCantones();
-    //this.filterDistritos();
     $(".imgAdd").click(function(){
       $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview" id="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
       
     });
-    if (this.mainservice.persona.fotografia != null) $("#imagePreview").css("background-image", "url("+this.mainservice.persona.fotografia+")");
+    if (this.mainservice.empresa.logo != null) $("#imagePreview").css("background-image", "url("+this.mainservice.empresa.logo+")");
     
     $(document).on("click", "i.del" , function() {
       $(this).parent().remove();
@@ -59,13 +49,13 @@ export class InformacionPersonalComponent implements OnInit {
                 reader.onloadend = function(){ // set image data as background of div
                     //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
                 uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
-                InformacionPersonalComponent.mainS.persona.fotografia = this.result.toString();
-                let persona = InformacionPersonalComponent.mainS.persona as Persona;
-                InformacionPersonalComponent.apolloS.mutate ({
-                  mutation: actualizarPersonaImagenMutation,
+                InformacionEmpresaComponent.mainS.empresa.logo = this.result.toString();
+                let empresa = InformacionEmpresaComponent.mainS.empresa as Empresa;
+                InformacionEmpresaComponent.apolloS.mutate ({
+                  mutation: actualizarEmpresaImagenMutation,
                   variables: {
-                    nombreusuario: persona.nombreusuario,
-                    fotografia: persona.fotografia
+                    nombreusuario: empresa.nombreusuario,
+                    logo: empresa.logo
                   }
                 }).subscribe(data => {
                   console.log(data);
@@ -79,18 +69,16 @@ export class InformacionPersonalComponent implements OnInit {
 
   guardarEdit(){
     if (this.validateCampos()) {
-      this.mainservice.persona = Object.assign({}, this.personaedit);
-      this.mainservice.persona.fechadenacimiento = this.fechadenacimientoedit;
-      this.fechadenacimiento = this.mainservice.persona.fechadenacimiento;
+      this.mainservice.empresa = Object.assign({}, this.empresaedit);
       this.mainservice.direcciones.forEach(element => {
         if (element.provinciacod == this.selectedProvincia) {
-          this.mainservice.persona.provincia = element.provincia as string;
+          this.mainservice.empresa.provincia = element.provincia as string;
           element.cantones.forEach(canton => {
             if (canton.cantoncod == this.selectedCanton) {
-              this.mainservice.persona.canton = canton.canton as string;
+              this.mainservice.empresa.canton = canton.canton as string;
               canton.distritos.forEach(distrito => {
                 if (distrito.distritocod == this.selectedDistrito) {
-                  this.mainservice.persona.distrito = distrito.distrito as string;
+                  this.mainservice.empresa.distrito = distrito.distrito as string;
                 }
               });
             }
@@ -98,51 +86,37 @@ export class InformacionPersonalComponent implements OnInit {
         }
       });
       this.apollo.mutate({
-        mutation: actualizarPersonaMutation,
+        mutation: actualizarEmpresaMutation,
         variables: {
-          persona: {
-            nombreusuario: this.mainservice.persona.nombreusuario,
-            apellido1: this.mainservice.persona.apellido1,
-            apellido2: this.mainservice.persona.apellido2,
-            email: this.mainservice.persona.email,
-            nombre: this.mainservice.persona.nombre,
-            fechadenacimiento: this.mainservice.persona.fechadenacimiento,
-            nacionalidad: this.mainservice.persona.nacionalidad,
+          empresa: {
+            nombreusuario: this.mainservice.empresa.nombreusuario,
+            email: this.mainservice.empresa.email,
+            nombre: this.mainservice.empresa.nombre,
+            nacionalidad: this.mainservice.empresa.nombrecontacto,
             provincia: this.selectedProvincia,
             canton: this.selectedCanton,
             distrito: this.selectedDistrito,
-            telefono1: this.mainservice.persona.telefono1,
-            telefono2: this.mainservice.persona.telefono2,
-            sitioweb: this.mainservice.persona.sitioweb,
-            fotografia: this.mainservice.persona.fotografia
+            telefono1: this.mainservice.empresa.telefono1,
+            telefono2: this.mainservice.empresa.telefono2,
+            sitioweb: this.mainservice.empresa.sitioweb,
           }
         }
       }).subscribe(data => {
         console.log(data);
       });
-      this.clearTag("primer-nombre");
-      this.clearTag("primer-apellido");
-      this.clearTag("segundo-apellido");
-      this.clearTag("correo");
       this.dismiss.nativeElement.click();    
     }
   }
 
   cancelarEdit() {
-    this.clearTag("primer-nombre");
-    this.clearTag("primer-apellido");
-    this.clearTag("segundo-apellido");
-    this.clearTag("correo");
-    this.personaedit = Object.assign({}, this.mainservice.persona);
+    this.empresaedit = Object.assign({}, this.mainservice.empresa);
   }
 
   validateCampos(): Boolean {
-    this.textChange("primer-nombre", "Ingrese su nombre");
-    this.textChange("primer-apellido", "Ingrese su primer apellido");
-    this.textChange("segundo-apellido", "Ingrese su segundo apellido");
-    this.textChange("correo", "Ingrese un correo válido");
-    if (this.personaedit.nombre == "" || this.personaedit.apellido1 == "" || this.personaedit.apellido2 == "" || 
-    this.personaedit.email == "" || this.personaedit.nacionalidad == "") {
+    this.textChange("nombre-empresa", "Ingrese un nombre");
+    this.textChange("correo", "Ingrese su primer apellido");
+    if (this.empresaedit.nombre == "" || 
+    this.empresaedit.email == "") {
       return false;
     }
     return true;
@@ -164,10 +138,11 @@ export class InformacionPersonalComponent implements OnInit {
       element.className += " is-valid";
     }
   }
-  
-  editar() {
-    this.personaedit = Object.assign({}, this.mainservice.persona) as Persona;
-    this.fechadenacimientoedit = this.mainservice.persona.fechadenacimiento;
+
+  editar(){
+    this.clearTag("nombre-empresa");
+    this.clearTag("correo");
+    this.empresaedit = Object.assign({}, this.mainservice.empresa) as Empresa;
     let provinciaIndex = -1;
     let cantonIndex = -1;
     let distritoIndex = -1;
@@ -175,22 +150,22 @@ export class InformacionPersonalComponent implements OnInit {
     let cantonIndexAux = -1;
     let distritoIndexAux = -1;
     let SelectAux = ["1", "01", "01"];
-    if (this.personaedit.provincia != null) {
+    if (this.empresaedit.provincia != null) {
       this.mainservice.direcciones.forEach( element => {
         provinciaIndex += 1;
-        if (element.provincia == this.mainservice.persona.provincia) {
+        if (element.provincia == this.mainservice.empresa.provincia) {
           provinciaIndexAux = provinciaIndex;
           this.selectedProvincia = element.provinciacod;
           SelectAux[0] = element.provinciacod as string;
           element.cantones.forEach(canton => {
             cantonIndex += 1;
-            if(canton.canton == this.mainservice.persona.canton) {
+            if(canton.canton == this.mainservice.empresa.canton) {
               cantonIndexAux = cantonIndex;
               this.selectedCanton = canton.cantoncod;
               SelectAux[1] = canton.cantoncod as string;
               canton.distritos.forEach(distrito => {
                 distritoIndex += 1;
-                if (distrito.distrito == this.mainservice.persona.distrito) {
+                if (distrito.distrito == this.mainservice.empresa.distrito) {
                   distritoIndexAux = distritoIndex;
                   this.selectedDistrito = distrito.distritocod;
                   SelectAux[2] = distrito.distritocod as string;
@@ -207,10 +182,10 @@ export class InformacionPersonalComponent implements OnInit {
       this.selectedProvincia = SelectAux[0];
       this.selectedCanton = SelectAux[1];
       this.selectedDistrito = SelectAux[2];
-      if (this.personaedit.canton != null) {
+      if (this.empresaedit.canton != null) {
         (document.getElementById("cantonDropdown") as HTMLSelectElement).selectedIndex = cantonIndexAux;
       } 
-      if (this.personaedit.distrito != null) {
+      if (this.empresaedit.distrito != null) {
         (document.getElementById("distritoDropdown") as HTMLSelectElement).selectedIndex = distritoIndexAux;
       }  
     } else {
@@ -247,5 +222,4 @@ export class InformacionPersonalComponent implements OnInit {
     });
     return this.mainservice.distritosFiltrados;
   }
-
 }
