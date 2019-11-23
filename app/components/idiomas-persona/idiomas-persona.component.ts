@@ -24,7 +24,6 @@ export class IdiomasPersonaComponent implements OnInit {
   ngOnInit() {
     this.lista_idiomas = this.mainservice.idiomas;
     this.lista_niveles = this.mainservice.nivelesidioma;
-    console.log(this.lista_idiomas);
   }
 
   removeElement(idioma: string){

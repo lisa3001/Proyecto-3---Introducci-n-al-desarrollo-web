@@ -16,6 +16,7 @@ import { EnterpriseRegisterComponent } from './components/enterprise-register/en
 import { EnterpriseProfileComponent } from './components/enterprise-profile/enterprise-profile.component';
 import { IdiomasPersonaComponent } from './components/idiomas-persona/idiomas-persona.component';
 import { MainServiceService } from './services/main-service.service';
+import { FormsModule } from '@angular/forms';
 
 export function mainServiceProvider(provider: MainServiceService) {
   console.log("hasdlasd");
@@ -40,7 +41,8 @@ export function mainServiceProvider(provider: MainServiceService) {
     BrowserModule,
     AppRoutingModule,
     GraphQLModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [MainServiceService,
     { provide: APP_INITIALIZER, useFactory: mainServiceProvider, deps: [MainServiceService], multi: true }],

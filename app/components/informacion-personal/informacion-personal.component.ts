@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery/dist/jquery.min.js';
+import { Component, OnInit, ViewChild } from '@angular/core';
+//import * as $ from 'jquery/dist/jquery.min.js';
+import * as $ from 'jquery';
 import { MainServiceService } from 'src/app/services/main-service.service';
-import { GuardsCheckStart } from '@angular/router';
-import { Persona, Experiencia } from 'src/app/types/types.module';
+import { Persona, Experiencia, Direccion } from 'src/app/types/types.module';
+import { Provincia } from 'src/app/queries/queries.module';
+
 var urlImagen;
 @Component({
   selector: 'app-informacion-personal',
@@ -10,14 +12,41 @@ var urlImagen;
   styleUrls: ['./informacion-personal.component.scss']
 })
 export class InformacionPersonalComponent implements OnInit {
+  @ViewChild('dismiss', {static: false}) dismiss: any;
   persona: Persona;
-  experiencias: Experiencia[];
+  fechadenacimiento: string;
+  personaedit: Persona;
+  fechadenacimientoedit: string;
+  
+  selectedProvincia: String = "";
+  selectedCanton: String = "";
+  selectedDistrito: String = "";
 
-  constructor(private mainservice: MainServiceService) {     
-    this.persona = this.mainservice.persona;
+  
+
+  constructor(private mainservice: MainServiceService) {    
+    this.fechadenacimiento = this.mainservice.persona.fechadenacimiento;
+    this.personaedit = Object.assign({}, this.mainservice.persona) as Persona;
+    this.fechadenacimientoedit = this.personaedit.fechadenacimiento;
+  }
+  
+  editar() {
+    this.personaedit = Object.assign({}, this.mainservice.persona) as Persona;
+    this.fechadenacimientoedit = this.mainservice.persona.fechadenacimiento;
+    if (this.personaedit.provincia != null) {
+      this.mainservice.direcciones.forEach( element => {
+        if (element.provincia = this.mainservice.persona.provincia) {
+          this.selectedProvincia = element.provinciacod;
+        }
+      });
+    } else {
+      this.selectedProvincia = this.mainservice.direcciones[0].provinciacod;
+    }
   }
 
   ngOnInit() {
+    //this.filterCantones();
+    //this.filterDistritos();
     $(".imgAdd").click(function(){
       $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
     });
@@ -46,33 +75,67 @@ export class InformacionPersonalComponent implements OnInit {
     });
   }
 
-  GuardarCambios(){
-    var nombre = (document.getElementById("primer-nombre") as HTMLInputElement).value;
-    var apellido1 = (document.getElementById("primer-apellido") as HTMLInputElement).value; 
-    var apellido2 = (document.getElementById("segundo-apellido") as HTMLInputElement).value;  
-    var correo = (document.getElementById("correo") as HTMLInputElement).value;
-    var telefono1 = (document.getElementById("telefono1") as HTMLInputElement).value;  
-    var telefono2 = (document.getElementById("telefono2") as HTMLInputElement).value;
-    var sitio = (document.getElementById("sitio-web") as HTMLInputElement).value;    
-    var fechaNacimiento = (document.getElementById("nacimiento") as HTMLInputElement).value;  
-    var nacionalidad = (document.getElementById("nacionalidadDropdown") as HTMLSelectElement).value;
-    var provincia = (document.getElementById("provinciaDropdown") as HTMLSelectElement).value;
-    var canton = (document.getElementById("cantonDropdown") as HTMLSelectElement).value;
-    var distrito = (document.getElementById("distritoDropdown") as HTMLSelectElement).value;
-    /*
-    this.nombre = nombre;
-    this.apellido1 = apellido1;
-    this.apellido2 = apellido2;
-    this.correo = correo;
-    this.telefono1 = telefono1;
-    this.telefono2 = telefono2;
-    this.sitio = sitio;
-    this.fechaNacimiento = fechaNacimiento;
-    this.nacionalidad = nacionalidad;
-    this.provincia = provincia;
-    this.canton = canton;
-    this.distrito = distrito;
-    console.log(urlImagen)*/
+  guardarEdit(){
+    if (this.validateCampos()) {
+      this.mainservice.persona = Object.assign({}, this.personaedit);
+      this.mainservice.persona.fechadenacimiento = this.fechadenacimientoedit;
+      this.fechadenacimiento = this.mainservice.persona.fechadenacimiento;
+      this.dismiss.nativeElement.click();
+    }
+  }
+
+  cancelarEdit() {
+    this.personaedit = Object.assign({}, this.persona);
+  }
+
+  validateCampos(): Boolean {
+    this.textChange("primer-nombre", "Ingrese su nombre");
+    this.textChange("primer-apellido", "Ingrese su primer apellido");
+    this.textChange("segundo-apellido", "Ingrese su segundo apellido");
+    this.textChange("correo", "Ingrese un correo válido");
+    if (this.personaedit.nombre == "" || this.personaedit.apellido1 == "" || this.personaedit.apellido2 == "" || 
+    this.personaedit.email == "" || this.personaedit.nacionalidad == "") {
+      return false;
+    }
+    return true;
+  }
+
+  textChange(tagName: string, errorMessage: string) {
+    var element = (document.getElementById(tagName) as HTMLInputElement);
+    if (element.value.trim() == ""){
+      element.className += " is-invalid";
+      element.placeholder = errorMessage;
+    }else{
+      element.classList.remove("is-invalid");
+      element.className += " is-valid";
+    }
+  }
+  
+  filterCantones() {
+    this.mainservice.cantonesFiltrados = [];
+    this.mainservice.direcciones.forEach(element => {
+      if (element.provinciacod == this.selectedProvincia) {
+        this.mainservice.cantonesFiltrados = element.cantones;
+        this.selectedCanton = element.cantones[0].cantoncod;
+        //(document.getElementById("cantonDropdown") as HTMLSelectElement).selectedIndex = 0;
+      }
+    });
+    this.filterDistritos();
+    return this.mainservice.cantonesFiltrados;
+  }
+
+  filterDistritos() {
+    this.mainservice.distritosFiltrados = [];
+    this.mainservice.direcciones.forEach(element => {
+      if (element.provinciacod == this.selectedProvincia) {
+        element.cantones.forEach(canton => {
+          if (canton.cantoncod = this.selectedCanton) {
+            this.mainservice.distritosFiltrados = canton.distritos;
+          }
+        });
+      }
+    });
+    return this.mainservice.cantonesFiltrados;
   }
 
 }

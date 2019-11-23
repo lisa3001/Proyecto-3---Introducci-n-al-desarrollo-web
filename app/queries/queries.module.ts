@@ -11,15 +11,19 @@ import gql from "graphql-tag";
 export class QueriesModule { }
 
 export const direccionesQuery = gql`
-    query {
-      getDirecciones {
-        provinciacod
-        provincia
-        cantoncod
-        canton
+query {
+  getDirecciones {
+    provinciacod
+    provincia
+    cantones {
+      cantoncod
+      canton
+      distritos {
         distritocod
         distrito
       }
+    }
+  }
 }`;
 
 export const idiomasQuery = gql`
@@ -91,13 +95,32 @@ export const empresaQuery = gql`
 }`;
 
 export const empresaNombreUsuarioQuery = gql`
-query EmpresaUN($nombreusuario: String!){
-  getNombresUsuarioEmpresas(nombreusuario: $nombreusuario)
+query {
+  getNombresUsuarioEmpresas
 }`;
 
+
+export type Provincia = {
+  provinciacod: String,
+  provincia: String,
+  cantones: Canton[]
+}
+
+export type Canton = {
+  provinciacod: String,
+  cantoncod: String,
+  canton: String,
+  distritos: Distrito[]
+}
+
+export type Distrito = {
+  distritocod: String,
+  distrito: String
+}
+
 export const personaNombreUsuarioQuery = gql`
-query PersonaUN($nombreusuario: String!){
-  getNombresUsuarioPersonas(nombreusuario: $nombreusuario)
+query{
+  getNombresUsuarioPersonas
 }`;
 
 
