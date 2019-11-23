@@ -28,7 +28,6 @@ export class LogInComponent implements OnInit {
   }
 
   AcceptButton(){
-    console.log("asd");
     if (this.userName != "" && this.userPassword != ""){
         this.login();
     }else{

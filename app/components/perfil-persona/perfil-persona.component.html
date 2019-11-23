@@ -65,8 +65,8 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                       <div class="tab-pane fade show active" id="agregar-experiencia" role="tabpanel" aria-labelledby="agregar-experiencia-tab">
-                        <div id="advanced-search-form" style="width:800px;">
-                          <form style="color: black; width:700px;">
+                        <div id="advanced-search-form" style="max-width:800px;">
+                          <form style="color: black; max-width:700px;">
                             <div class="form-group">
                               <label for="nombre-empresa">Empresa</label>
                               <input type="text" class="form-control" placeholder="Empresa" id="empresa-add"
@@ -79,12 +79,12 @@
                             </div>
                             <div class="form-group">
                               <label for="inicio">Fecha de ingreso</label>
-                              <input type="text" class="form-control" placeholder="Fecha de ingreso"
+                              <input type="date" class="form-control" placeholder="Fecha de ingreso"
                                 id="fecha-ingreso-add" value="{{fechaIngreso}}">
                             </div>
                             <div class="form-group">
                               <label for="salida">Fecha de salida</label>
-                              <input type="text" class="form-control" placeholder="Fecha de salida"
+                              <input type="date" class="form-control" placeholder="Fecha de salida"
                                 id="fecha-salida-add" value="{{fechaSalida}}">
                             </div>
                             <div class="form-group">
@@ -96,7 +96,7 @@
                               <label for="trabajo">¿Es su trabajo actual?</label>
                               <div class="radio">
                                 <label class="radio-inline">
-                                  <input type="radio" name="optradio">Sí</label>
+                                  <input type="radio" name="optradio" checked>Sí</label>
                                 <label class="radio-inline">
                                   <input type="radio" name="optradio">No</label>
                               </div>

@@ -47,10 +47,10 @@ export type Persona = {
   telefono2: string,
   sitioweb: string,
   fotografia: string,
-  estudios: [Estudio],
-  experiencias: [Experiencia]
-  idiomas: [string],
-  certificaciones: [Certificacion]
+  estudios: Estudio[],
+  experiencias: Experiencia[],
+  idiomas: string[],
+  certificaciones: Certificacion[]
 }
 
 export type Idioma = {
