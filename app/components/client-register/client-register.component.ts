@@ -41,29 +41,7 @@ export class ClientRegisterComponent implements OnInit {
     var isDateOK = this.validateDate();
     var isCountry = this.validateCountry();
     if (this.name != "" && this.surName2 != "" && this.surName1 != "" && this.email != "" && isDateOK && isCountry){
-      this.apollo.mutate({
-        mutation: crearPersonaMutation,
-        variables: {
-          nombreusuario: this.mainservice.logindata.username,
-          contrasenia: this.mainservice.logindata.password,
-          nombre: this.name,
-          apellido1: this.surName1,
-          apellido2: this.surName2,
-          email: this.email,
-          fechadenacimiento: this.birthDate,
-          nacionalidad: this.nationality
-        }
-      }).subscribe(result => {
-        if(result.data['crearPersona'] != null && result.data['crearPersona'].success) {
-          this.router.navigate(['/PersonProfile']);
-        } else {
-          if (result.data['crearPersona'] != null && result.data['crearPersona'].message) {
-            alert(result.data['crearPersona'].message);
-          } else {
-            alert("Error");
-          }
-        }
-      });
+      this.registerclient();
     } else {
       this.textChange('userName', 'NameError', 'Debes ingresar un nombre');
       this.textChange('surName', 'surNameError', 'Debes ingresar tu primer apellido');
@@ -122,7 +100,6 @@ export class ClientRegisterComponent implements OnInit {
       element.classList.remove("is-invalid");
       element.className += " is-valid";
     }
-    this.saveData(tagName, element.value.trim());
   }
 
   saveData(tagName: string, data: string){
@@ -140,5 +117,29 @@ export class ClientRegisterComponent implements OnInit {
     errorElement.textContent = errorMessage;
   }
 
-
+  registerclient() {
+    this.apollo.mutate({
+      mutation: crearPersonaMutation,
+      variables: {
+        nombreusuario: this.mainservice.logindata.username,
+        contrasenia: this.mainservice.logindata.password,
+        nombre: this.name,
+        apellido1: this.surName1,
+        apellido2: this.surName2,
+        email: this.email,
+        fechadenacimiento: this.birthDate,
+        nacionalidad: this.nationality
+      }
+    }).subscribe(result => {
+      if(result.data['crearPersona'] != null && result.data['crearPersona'].success) {
+        this.router.navigate(['/PersonProfile']);
+      } else {
+        if (result.data['crearPersona'] != null && result.data['crearPersona'].message) {
+          alert(result.data['crearPersona'].message);
+        } else {
+          alert("Error");
+        }
+      }
+    });
+  }
 }

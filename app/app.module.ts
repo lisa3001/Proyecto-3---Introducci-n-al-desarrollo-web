@@ -23,6 +23,7 @@ const ENTRYCOMPONENTS = [
   ExperienciaPersonaComponent,
   InformacionPersonalComponent
 ];
+import { FormsModule } from '@angular/forms';
 
 export function mainServiceProvider(provider: MainServiceService) {
   console.log("hasdlasd");
@@ -49,6 +50,7 @@ export function mainServiceProvider(provider: MainServiceService) {
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [MainServiceService,{ provide: APP_INITIALIZER, useFactory: mainServiceProvider, deps: [MainServiceService], multi: true }],
   bootstrap: [AppComponent],

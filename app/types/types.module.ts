@@ -38,7 +38,7 @@ export type Persona = {
   apellido2: string,
   email: string,
   nombre: string,
-  fechadenacimiento: Date,
+  fechadenacimiento: string,
   nacionalidad: string,
   provincia: string,
   canton: string,

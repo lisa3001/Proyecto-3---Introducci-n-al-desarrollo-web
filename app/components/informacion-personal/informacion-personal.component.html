@@ -2,12 +2,12 @@
     <div>
         <span>Información personal</span>
         <a href="#addEmployeeModal" data-toggle="modal"><img class="iconoEditar" src="assets/images/editar.png"
-                alt="icono editar"></a>
+                alt="icono editar" (click)="editar()"></a>
     </div>
     <hr class="divider">
     <div class="container-fluid contenedor">
         <div id="contenedorImagen">
-            <h5 style="margin-bottom:10px; color: rgb(9, 134, 136);"></h5>
+            <h5 style="margin-bottom:10px; color: rgb(9, 134, 136);">{{mainservice.persona.nombreusuario}}</h5>
             <div class="imgUp">
                 <div class="imagePreview"></div>
                 <label class="btn btnRegistrar btn-primary btn-responsive">
@@ -20,54 +20,63 @@
             <form style="color: black;">
                 <div class="form-group">
                     <label for="primer-nombre">Nombre</label>
-                    <input type="text" class="form-control" placeholder="Nombre" id="primer-nombre-info" value="{{nombre}}" disabled>
+                    <input type="text" class="form-control" placeholder="Nombre" id="primer-nombre-info"
+                        value="{{mainservice.persona.nombre}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="primer-apellido">Primer apellido</label>
-                    <input type="text" class="form-control" placeholder="Primer apellido" id="primer-apellido-info" value="{{apellido1}}"
-                        disabled>
+                    <input type="text" class="form-control" placeholder="Primer apellido" id="primer-apellido-info"
+                        value="{{mainservice.persona.apellido1}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="segundo-apellido">Segundo Apellido</label>
-                    <input type="text" class="form-control" placeholder="Segundo Apellido" id="segundo-apellido-info" value="{{apellido2}}"
-                        disabled>
+                    <input type="text" class="form-control" placeholder="Segundo Apellido" id="segundo-apellido-info"
+                        value="{{mainservice.persona.apellido2}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="correo">Correo Electrónico</label>
-                    <input type="text" class="form-control" placeholder="Correo Electrónico" id="correo-info" value="{{correo}}" disabled>
+                    <input type="text" class="form-control" placeholder="Correo Electrónico" id="correo-info"
+                        value="{{mainservice.persona.email}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="telefono1">Teléfono 1</label>
-                    <input type="text" class="form-control" placeholder="Teléfono 1" id="telefono1-info" value="{{telefono1}}" disabled>
+                    <input type="text" class="form-control" placeholder="Teléfono 1" id="telefono1-info"
+                        value="{{mainservice.persona.telefono1}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="telefono2">Teléfono 2</label>
-                    <input type="text" class="form-control" placeholder="Teléfono 2" id="telefono2-info" value="{{telefono2}}" disabled>
+                    <input type="text" class="form-control" placeholder="Teléfono 2" id="telefono2-info"
+                        value="{{mainservice.persona.telefono2}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="sitio-web">Sitio web</label>
-                    <input type="text" class="form-control" placeholder="Sitio web" id="sitio-web-info" value="{{sitio}}" disabled>
+                    <input type="text" class="form-control" placeholder="Sitio web" id="sitio-web-info"
+                        value="{{mainservice.persona.sitio}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="nacimiento">Fecha de nacimiento</label>
-                    <input type="text" class="form-control" placeholder="Fecha de nacimiento" id="nacimiento-info" value="{{fechaNacimiento}}"
-                        disabled>
+                    <input type="text" class="form-control" placeholder="Fecha de nacimiento" id="nacimiento-info"
+                        value="{{fechadenacimiento}}" date-format="yyyy-mm-dd" disabled>
                 </div>
                 <div class="form-group">
                     <label for="nacionalidad">Nacionalidad</label>
-                    <input type="text" class="form-control" placeholder="Nacionalidad" id="nacionalidad-info" value="{{nacionalidad}}" disabled>
+                    <input type="text" class="form-control" placeholder="Nacionalidad" id="nacionalidad-info"
+                        value="{{mainservice.persona.nacionalidad}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="provincia">Provincia</label>
-                    <input type="text" class="form-control" placeholder="Provincia" id="provincia-info" value="{{provincia}}" disabled>
+                    <input type="text" class="form-control" placeholder="Provincia" id="provincia-info"
+                        value="{{mainservice.persona.provincia}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="canton">Cantón</label>
-                    <input type="text" class="form-control" placeholder="Cantón" id="canton-info" value="{{canton}}" disabled>
+                    <input type="text" class="form-control" placeholder="Cantón" id="canton-info"
+                        value="{{mainservice.persona.canton}}" disabled>
                 </div>
                 <div class="form-group">
                     <label for="distrito">Distrito</label>
-                    <input type="text" class="form-control" placeholder="Distrito" id="distrito-info" value="{{distrito}}" disabled>
+                    <input type="text" class="form-control" placeholder="Distrito" id="distrito-info"
+                        value="{{mainservice.persona.distrito}}" disabled>
                 </div>
                 <div class="clearfix"></div>
             </form>
@@ -80,83 +89,97 @@
                 <form>
                     <div class="modal-header">
                         <h4 class="modal-title">Editar información personal</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            (click)="cancelarEdit()">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div id="contenedorInformacion">
-                            <form style="color: black;">
+                            <form style="color: black;" role="form">
                                 <div class="form-group">
                                     <label for="name">Nombre</label>
-                                    <input type="text" class="form-control" placeholder="Nombre" id="primer-nombre" value="{{nombre}}" required>
+                                    <input type="text" class="form-control" placeholder="Nombre" id="primer-nombre"
+                                        [(ngModel)]="personaedit.nombre" [ngModelOptions]="{standalone: true}" required (keyup)="textChange('primer-nombre', 'Ingrese su nombre')">
+                                    <div id="error-nombre" class="">
+
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="apellido1">Primer apellido</label>
-                                    <input type="text" class="form-control" placeholder="Primer apellido" value="{{apellido1}}"
-                                        id="primer-apellido" required>
+                                    <input type="text" class="form-control" placeholder="Primer apellido"
+                                        [(ngModel)]="personaedit.apellido1" [ngModelOptions]="{standalone: true}"
+                                        id="primer-apellido" required (keyup)="textChange('primer-apellido', 'Ingrese su primer apellido')">
                                 </div>
                                 <div class="form-group">
                                     <label for="apellido2">Segundo Apellido</label>
-                                    <input type="text" class="form-control" placeholder="Segundo Apellido" value="{{apellido2}}"
-                                        id="segundo-apellido" required>
+                                    <input type="text" class="form-control" placeholder="Segundo Apellido"
+                                        [(ngModel)]="personaedit.apellido2" [ngModelOptions]="{standalone: true}"
+                                        id="segundo-apellido" required (keyup)="textChange('segundo-apellido', 'Ingrese su segundo apellido')">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Correo Electrónico</label>
-                                    <input type="text" class="form-control" placeholder="Correo Electrónico" value="{{correo}}"
-                                        id="correo" required>
+                                    <input type="text" class="form-control" placeholder="Correo Electrónico"
+                                        [(ngModel)]="personaedit.email" [ngModelOptions]="{standalone: true}"
+                                        id="correo" required (keyup)="textChange('correo', 'Ingrese su correo')">
                                 </div>
                                 <div class="form-group">
                                     <label for="telefono">Teléfono 1</label>
-                                    <input required type="text" class="form-control" placeholder="Teléfono 1" id="telefono1" value="{{telefono1}}"
+                                    <input required type="text" class="form-control" placeholder="Teléfono 1"
+                                        id="telefono1" [(ngModel)]="personaedit.telefono1"
+                                        [ngModelOptions]="{standalone: true}"
                                         onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
                                 </div>
                                 <div class="form-group">
                                     <label for="telefono">Teléfono 2</label>
-                                    <input required type="text" class="form-control" placeholder="Teléfono 2" id="telefono2" value="{{telefono2}}"
+                                    <input required type="text" class="form-control" placeholder="Teléfono 2"
+                                        id="telefono2" [(ngModel)]="personaedit.telefono2"
+                                        [ngModelOptions]="{standalone: true}"
                                         onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
                                 </div>
                                 <div class="form-group">
                                     <label for="sitio">Sitio web</label>
-                                    <input type="text" class="form-control" placeholder="Sitio web" id="sitio-web" required value="{{sitio}}">
+                                    <input type="text" class="form-control" placeholder="Sitio web" id="sitio-web"
+                                        required [(ngModel)]="personaedit.sitioweb"
+                                        [ngModelOptions]="{standalone: true}">
                                 </div>
                                 <div class="form-group">
                                     <label for="fecha">Fecha de nacimiento</label>
-                                    <input type="date" class="form-control" placeholder="Fecha de nacimiento" id="nacimiento" value="{{fechaNacimiento}}" required>
+                                    <input type="date" class="form-control" placeholder="Fecha de nacimiento"
+                                        id="nacimiento" [(ngModel)]="fechadenacimientoedit"
+                                        [ngModelOptions]="{standalone: true}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="pais">Nacionalidad</label>
-                                    <select id = "nacionalidadDropdown" class="dropdwn" style="margin-left: 2px; display: flex;">
-                                        <option value = "one">one</option>
-                                        <option value = "two">two</option>
-                                        <option value = "3">three</option>
-                                        <option value = "4">four</option>
-                                      </select>
+                                    <select id="nacionalidadDropdown" name="nacionalidadDropdown" class="dropdwn custom-select form-control"
+                                        [(ngModel)]="personaedit.nacionalidad" required>
+                                        <option *ngFor="let obj of mainservice.paises"
+                                            [selected]="obj === personaedit.nacionalidad" [value]="obj">{{obj}}</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="provincia1">Provincia</label>
-                                    <select id = "provinciaDropdown" class="dropdwn" style="margin-left: 2px; display: flex;">
-                                        <option value = "one">one</option>
-                                        <option value = "two">two</option>
-                                        <option value = "3">three</option>
-                                        <option value = "4">four</option>
-                                      </select>
+                                    <select id="provinciaDropdown" name="provinciaDropdown" class="dropdwn custom-select form-control"
+                                    [(ngModel)]="selectedProvincia">
+                                        <option *ngFor="let prov of mainservice.direcciones"
+                                            [selected]="prov.provincia == personaedit.provincia" value={{prov.provinciacod}}>{{prov.provincia}}</option>
+                                            
+                                    </select>
+                                    
                                 </div>
                                 <div class="form-group">
                                     <label for="canton1">Cantón</label>
-                                    <select id = "cantonDropdown" class="dropdwn" style="margin-left: 2px; display: flex;">
-                                        <option value = "one">one</option>
-                                        <option value = "two">two</option>
-                                        <option value = "3">three</option>
-                                        <option value = "4">four</option>
-                                      </select>
+                                    <select id="cantonDropdown" name="cantonDropdown" class="dropdwn custom-select form-control"
+                                    [(ngModel)]="selectedCanton">
+                                        <option *ngFor="let canton of filterCantones()"
+                                            [selected]="canton.canton == personaedit.canton" value={{canton.cantoncod}}>{{canton.canton}}</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="distrito1">Distrito</label>
-                                    <select id = "distritoDropdown" class="dropdwn" style="margin-left: 2px; display: flex;">
-                                        <option value = "one">one</option>
-                                        <option value = "two">two</option>
-                                        <option value = "3">three</option>
-                                        <option value = "4">four</option>
-                                      </select>
+                                    <label for="distrito1">Cantón</label>
+                                    <select id="distritoDropdown" name="distritoDropdown" class="dropdwn custom-select form-control"
+                                    [(ngModel)]="selectedDistrito">
+                                        <option *ngFor="let distrito of filterDistritos()"
+                                            [selected]="distrito.distrito == personaedit.distrito" value={{distrito.distritocod}}>{{distrito.canton}}</option>
+                                    </select>
                                 </div>
                                 <div class="clearfix"></div>
                             </form>
@@ -164,7 +187,9 @@
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                        <input type="button" class="btn btnRegistrar btn-success" (click)="GuardarCambios()" value="Guardar Cambios">
+                        <input type="button" id="submit" class="btn btnRegistrar btn-success" value="Guardar Cambios"
+                            (click)="guardarEdit()">
+                        <button type="button" #dismiss style="display: none;" data-dismiss="modal">&times;</button>
                     </div>
                 </form>
             </div>

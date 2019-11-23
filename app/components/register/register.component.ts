@@ -11,11 +11,11 @@ import { empresaNombreUsuarioQuery, personaNombreUsuarioQuery } from 'src/app/qu
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
   userName: string;
   userPassword: string;
   link: string;
-
+  private usernames: String[] = [];
+  
   constructor(private apollo: Apollo, private _router: Router, private mainservice: MainServiceService) { 
     this.link = "/Register";
     this.userName = "";
@@ -23,44 +23,40 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.apollo.query({
+      query: empresaNombreUsuarioQuery
+    }).subscribe(result => {
+      if (result.data['getNombresUsuarioEmpresas'] != null) {
+        this.usernames.push.apply(this.usernames, result.data['getNombresUsuarioEmpresas'] as String[]);
+      }
+    });
+    this.apollo.query({
+      query: personaNombreUsuarioQuery
+    }).subscribe(result => {
+      if (result.data['getNombresUsuarioPersonas'] != null) {
+        this.usernames.push.apply(this.usernames, result.data['getNombresUsuarioPersonas'] as String[]);
+      }
+    });
   }
 
   AcceptButton(){
     var isButtonChecked = this.isRadioButtonChecked();
     if (this.userName != "" && this.userPassword != "" && isButtonChecked){
-      if(this.link == "/EmpresaRegister") { 
-        this.mainservice.logindata = {username: this.userName, password: this.userPassword};
-          this.apollo.query({
-            query: empresaNombreUsuarioQuery,
-            variables: {
-              nombreusuario: this.userName
-            }
-          }).subscribe(result => {
-            if (result.data['getNombresUsuarioEmpresas'] == null) {
-              this._router.navigate([this.link]);
-            } else {
-              this.WrongData('userName', 'userNameError');
-            }
-          });
-        } else {
-          this.mainservice.logindata = {username: this.userName, password: this.userPassword};
-          this.apollo.query({
-            query: personaNombreUsuarioQuery,
-            variables: {
-              nombreusuario: this.userName
-            }
-          }).subscribe(result => {
-            if (result.data['getNombresUsuarioPersonas'] == null) {
-              this._router.navigate([this.link]);
-            } else {
-              this.WrongData('userName', 'userNameError');
-            }
-          });
-        }
+      this.register();
     } else {
       this.textChange('userName', 'userNameError', 'Debes ingresar un nombre de usuario.');
       this.textChange('userPassword', 'userPassError', 'Debes ingresar una contraseña.');
+    }
+  }
+
+  register() {
+    if (this.validarUsername()) {
+      if(this.link == "/EmpresaRegister") { 
+        this.mainservice.logindata = {username: this.userName, password: this.userPassword};
+          this._router.navigate([this.link]);
+      } else if (this.link == "/PersonRegister") {
+          this._router.navigate([this.link]);
+      }
     }
   }
 
@@ -87,8 +83,22 @@ export class RegisterComponent implements OnInit {
       element.classList.remove("is-invalid");
     }
     this.saveData(tagName, element.value.trim());
+    if (tagName == "userName") {
+      this.validarUsername();
+    }
   }
 
+  validarUsername() {
+    if (this.usernames.includes(this.userName)) {
+      this.WrongData('userName', 'userNameError');
+      return false;
+    }
+    if (this.usernames.includes(this.userName)) {
+      this.WrongData('userName', 'userNameError');
+      return false;
+    }
+    return true;
+  }
   handleChangeClient(evt) {
     var target = evt.target;
     if (target.checked) {

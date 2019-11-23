@@ -28,15 +28,12 @@
                     <div class = "col-md-6">
                         <label for="SurName1Field" class="NameLabel">Primer Apellido</label>
                         <input type="text" class="form-control " id="surName" (keyup)="textChange('surName', 'surNameError', 'Debes ingresar tu primer apellido')" aria-describedby="SurName1Field" placeholder="Ingresa tu primerApellido" required>
-                        <div id="surNameError" class="">
-                            
-                        </div>
                     </div>
                     <div class = "col-md-6 ">
                         <label for="DateBirthField" class="NameLabel">Nacionalidad</label>
-                        <select  class="custom-select" id="countriesSelect" ng-model="countries" (change)="getCountry()" required>
+                        <select  class="custom-select" id="countriesSelect" ng-model="mainservice.paises" (change)="getCountry()" required>
                             <option value=''>Elige tu país de origen</option>
-                            <option *ngFor="let obj of countries" ngValue="obj">{{obj}}</option>
+                            <option *ngFor="let obj of mainservice.paises" ngValue="obj">{{obj}}</option>
                         </select>
                         <div id="countryError" class="">
                             
