@@ -1,22 +1,19 @@
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 22px;">
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="table-wrapper table-responsive-md col-md-12">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-md-3">
-                            <select class="form-control" id="softwareOption" ng-model="lista_idiomas"
-                                 required>
-                                <option *ngFor="let idioma of lista_idiomas" ngValue="idioma">{{idioma.name}}</option>
-                            </select>
+                        <div class="col-md-4">
+                            <input class="form-control" placeholder="Software" id="softwareOption" required>
                         </div>
-                        <div class="col-md-3">
-                            <select class="form-control" id="tipoOption" ng-model="lista_niveles">
+                        <div class="col-md-5">
+                            <select class="dropdwn custom-select form-control" id="tipoOption" ng-model="lista_niveles">
                                 <option *ngFor="let nivel of lista_niveles" ngValue="nivel">{{nivel}}</option>
                             </select>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <button type="button" id="addButtonId" class="btn btn-info add-new" (click)="addButton()"><i
                                     class="fa fa-plus"></i></button>
                         </div>

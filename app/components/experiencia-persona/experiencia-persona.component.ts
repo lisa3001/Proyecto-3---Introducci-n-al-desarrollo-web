@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import * as $ from 'jquery/dist/jquery.min.js';
 @Component({
   selector: 'app-experiencia-persona',
@@ -6,10 +6,14 @@ import * as $ from 'jquery/dist/jquery.min.js';
   styleUrls: ['./experiencia-persona.component.scss']
 })
 export class ExperienciaPersonaComponent implements OnInit {
-
+  @Output() public instancia = this.MiInstancia();
   constructor() { }
 
   ngOnInit() {
   }
  
+  MiInstancia(){
+    console.log(this);
+  }
+
 }
