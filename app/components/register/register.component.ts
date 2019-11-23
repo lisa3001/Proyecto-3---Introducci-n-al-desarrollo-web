@@ -51,8 +51,8 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (this.validarUsername()) {
-      if(this.link == "/EmpresaRegister") { 
-        this.mainservice.logindata = {username: this.userName, password: this.userPassword};
+      this.mainservice.logindata = {username: this.userName, password: this.userPassword};
+      if(this.link == "/EnterpriseRegister") { 
           this._router.navigate([this.link]);
       } else if (this.link == "/PersonRegister") {
           this._router.navigate([this.link]);
@@ -99,6 +99,7 @@ export class RegisterComponent implements OnInit {
     }
     return true;
   }
+  
   handleChangeClient(evt) {
     var target = evt.target;
     if (target.checked) {
