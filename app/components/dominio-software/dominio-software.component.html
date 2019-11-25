@@ -1,21 +1,25 @@
 <div class="container-fluid" style="margin-top: 22px;">
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="table-wrapper table-responsive-md col-md-12">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-md-4">
-                            <input class="form-control" placeholder="Software" id="softwareOption" required>
+                                <label>Nombre del dominio</label>
+                            <input class="form-control" placeholder="Software" id="softwareOption" name="softwareOption" 
+                            [(ngModel)]="selectedNombre" required>
                         </div>
                         <div class="col-md-5">
-                            <select class="dropdwn custom-select form-control" id="tipoOption" ng-model="lista_niveles">
-                                <option *ngFor="let nivel of lista_niveles" ngValue="nivel">{{nivel}}</option>
+                            <label>Tipo de software</label>
+                            <select class="dropdwn custom-select form-control" id="tipoOption"name="tipoOption" 
+                            [(ngModel)]="selectedTipo">
+                                <option *ngFor="let Software of mainservice.tiposdesoftware" value="{{Software}}" selected="Software">{{Software}}</option>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" id="addButtonId" class="btn btn-info add-new" (click)="addButton()"><i
-                                    class="fa fa-plus"></i></button>
+                            <button style="height: auto;"
+                            type="button" id="addButtonId" class="btn btn-info add-new" (click)="addButton()">
+                                <i class="fa fa-plus"></i></button>
                         </div>
                     </div>
                 </div>
@@ -29,10 +33,17 @@
                         </tr>
                     </thead>
                     <tbody id="contenedorDominios">
+                        <tr *ngFor="let dominio of dominios">
+                            <td>{{dominio.nombredellenguaje}}</td>
+                            <td>{{dominio.tipodesoftware}}</td>
+                            <td><button style="background: transparent; border: none !important;" 
+                                (click)="selectedTipoDelete = dominio.tipodesoftware; selectedNombreDelete = dominio.nombredellenguaje; delete()">
+                                <img src="assets/images/basurero.png"/>
+                            </button></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="col-md-3"></div>
     </div>
 </div>

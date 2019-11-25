@@ -99,6 +99,9 @@ export class LogInComponent implements OnInit {
         console.log(data);
         if (data.data['personaLogin'] != null) { 
           this.mainservice.persona = data.data['personaLogin'] as Persona;
+          this.mainservice.editExperiencias = JSON.parse(JSON.stringify(this.mainservice.persona.experiencias));
+          this.mainservice.editIdiomas = JSON.parse(JSON.stringify(this.mainservice.persona.idiomas));
+          this.mainservice.logged = "persona";
           this.router.navigate([this.link]);
         } else {
           this.WrongData('userName', 'userNameError');
@@ -115,6 +118,7 @@ export class LogInComponent implements OnInit {
       }).subscribe(data => {
         if (data.data['empresaLogin'] != null) { 
           this.mainservice.empresa = data.data['empresaLogin'] as Empresa;
+          this.mainservice.logged = "empresa";
           this.router.navigate([this.link]);
         } else {
           this.WrongData('userName', 'userNameError');

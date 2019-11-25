@@ -1,0 +1,305 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="agregar-dominio-tab" data-toggle="tab" href="#informacionConcursoEditar"
+            role="tab" aria-controls="informacionConcursoEditar" aria-selected="false">Infomración</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="agregar-dominio-tab" data-toggle="tab" href="#responsabilidadesEditar" role="tab"
+            aria-controls="responsabilidadesEditar" aria-selected="false">Responsabilidades</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="idiomasConcursoEditar-tab" data-toggle="tab" href="#idiomasConcursoEditar" role="tab"
+            aria-controls="idiomasConcursoEditar" aria-selected="true">Idiomas requeridos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="agregar-experiencia-tab" data-toggle="tab" href="#certificacionesConcursoEditar"
+            role="tab" aria-controls="certificacionesConcursoEditar" aria-selected="true">Certificaciones requeridas</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="agregar-experiencia-tab" data-toggle="tab" href="#dominiosConcursoEditar" role="tab"
+            aria-controls="dominiosConcursoEditar" aria-selected="true">Dominios requeridos</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent" style="margin-top: 10px;">
+    <div class="tab-pane fade show active" id="informacionConcursoEditar" role="tabpanel"
+        aria-labelledby="dominios-tab">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="contenedorInformacion">
+                    <form style="color: black;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nombre-empresa">Nombre del puesto</label>
+                                    <input type="text" class="form-control" placeholder="Puesto" id="empresa-info"
+                                        name="empresaInfo" [(ngModel)]="mainservice.editConcurso.nombredelpuesto">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="salida">Fecha de salida</label>
+                                    <input type="date" class="form-control" placeholder="Fecha de salida"
+                                        id="fecha-salida-info" name="fecha-salida-info"
+                                        [(ngModel)]="mainservice.editConcurso.fechadecaducidad">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="desc">Descripción</label>
+                                    <input type="text" class="form-control" placeholder="Descripción"
+                                        id="descripcion-info" name="descripcion-info"
+                                        [(ngModel)]="mainservice.editConcurso.descripcion" style="overflow-y:auto;">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="responsabilidadesEditar" role="tabpanel" aria-labelledby="dominios-tab">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrapper table-responsive-md col-md-12">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Descripción</label>
+                                    <input class="form-control" placeholder="Descripción" id="softwareOption"
+                                        name="softwareOption" [(ngModel)]="selectedResponsabilidadDesc" required>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label style="color: transparent;"> asd</label>
+                                    <button style="height: auto;" type="button" id="addButtonId"
+                                        class="form-control btn btn-info add-new"
+                                        (click)="agregarResponsabilidadEditar()">
+                                        <i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Descripción</th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenedorResponsabilidadesEditar">
+                                <tr *ngFor="let resp of mainservice.editConcurso.responsabilidades;">
+                                    <td>{{resp}}</td>
+                                    <td><button style="background: transparent; border: none !important;"
+                                            (click)="deleteResponsabilidadEditar(resp)">
+                                            <img src="assets/images/basurero.png" />
+                                        </button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="idiomasConcursoEditar" role="tabpanel" aria-labelledby="dominios-tab">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrapper table-responsive-md col-md-12">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Idioma</label>
+                                    <select class="dropdwn custom-select form-control" id="nivelOptionAgregar"
+                                        name="nivelOptionAgregar" [(ngModel)]="selectedIdiomaEditar">
+                                        <option *ngFor="let idioma of mainservice.idiomas" [value]="idioma">
+                                            {{idioma}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Nivel del idioma</label>
+                                    <select class="dropdwn custom-select form-control" id="nivelOptionAgregar"
+                                        name="nivelOptionAgregar" [(ngModel)]="selectedNivelEditar">
+                                        <option *ngFor="let nivelidioma of mainservice.nivelesidioma"
+                                            [value]="nivelidioma">
+                                            {{nivelidioma}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label style="color: transparent;"> asd</label>
+                                    <button style="height: auto;" type="button" id="addButtonId"
+                                        class="form-control btn btn-info add-new" (click)="agregarIdiomaEditar()">
+                                        <i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Idioma</th>
+                                    <th>Nivel</th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenedorIdiomasEditar">
+                                <tr *ngFor="let idioma of mainservice.editConcurso.idiomas">
+                                    <td>{{idioma.nombre}}</td>
+                                    <td>{{idioma.nivel}}</td>
+                                    <td><button style="background: transparent; border: none !important;"
+                                            (click)="deleteIdiomaEditar(idioma)">
+                                            <img src="assets/images/basurero.png" />
+                                        </button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="certificacionesConcursoEditar" role="tabpanel" aria-labelledby="dominios-tab">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrapper table-responsive-md col-md-12">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label>Título</label>
+                                    <input class="form-control" placeholder="Título" id="softwareOption"
+                                        name="softwareOption" [(ngModel)]="selectedCertificacionEditar.titulo" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>¿Es obligatorio?</label>
+                                    <div class="radio" aria-="true">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio"
+                                                [checked]="selectedCertificacionEditar.obligatorio === true"
+                                                (click)="selectedCertificacionEditar.obligatorio = true">Sí</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio"
+                                                [checked]="selectedCertificacionEditar.obligatorio === false"
+                                                (click)="selectedCertificacionEditar.obligatorio = false">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label style="color: transparent;"> asd</label>
+                                    <button style="height: auto;" type="button" id="addButtonId"
+                                        class="form-control btn btn-info add-new"
+                                        (click)="agregarCertificacionEditar()">
+                                        <i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Titulo</th>
+                                    <th>Obligatorio</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenedorDominiosEditar">
+                                <tr *ngFor="let certi of mainservice.editConcurso.certificaciones">
+                                    <td>{{certi.titulo}}</td>
+                                    <td>{{ certi.obligatorio == true ? 'Sí' : 'No' }}</td>
+                                    <td><button style="background: transparent; border: none !important;"
+                                            (click)="deleteCertificacionEditar(certi)">
+                                            <img src="assets/images/basurero.png" />
+                                        </button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="dominiosConcursoEditar" role="tabpanel" aria-labelledby="dominios-tab">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrapper table-responsive-md col-md-12">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input class="form-control" placeholder="Nombre" id="softwareOption"
+                                        name="softwareOption" [(ngModel)]="selectedDominioEditar.nombre" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Tipo</label>
+                                    <select class="dropdwn custom-select form-control" id="nivelOptionAgregar"
+                                        name="nivelOptionAgregar" [(ngModel)]="selectedDominioEditar.tipo">
+                                        <option *ngFor="let tipo of mainservice.tiposdesoftware" [value]="tipo">
+                                            {{tipo}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>¿Es obligatorio?</label>
+                                    <div class="radio" aria-="true">
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio"
+                                                [checked]="selectedDominioEditar.obligatorio === true"
+                                                (click)="selectedDominioEditar.obligatorio = true">Sí</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="optradio"
+                                                [checked]="selectedDominioEditar.obligatorio === false"
+                                                (click)="selectedDominioEditar.obligatorio = false">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label style="color: transparent;"> asd</label>
+                                    <button style="height: auto;" type="button" id="addButtonId"
+                                        class="form-control btn btn-info add-new" (click)="agregarDominioEditar()">
+                                        <i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Tipo</th>
+                                    <th>Obligatorio</th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenedorDominiosEditar">
+                                <tr *ngFor="let dominio of mainservice.editConcurso.dominios">
+                                    <td>{{dominio.nombre}}</td>
+                                    <td>{{dominio.tipo}}</td>
+                                    <td>{{ dominio.obligatorio == true ? 'Sí' : 'No' }}</td>
+                                    <td><button style="background: transparent; border: none !important;"
+                                            (click)="deleteDominioEditar(dominio)">
+                                            <img src="assets/images/basurero.png" />
+                                        </button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

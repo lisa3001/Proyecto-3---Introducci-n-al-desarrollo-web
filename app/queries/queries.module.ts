@@ -28,10 +28,7 @@ query {
 
 export const idiomasQuery = gql`
     query {
-      getIdiomas {
-        id
-        name
-      }
+      getIdiomas
 }`;
 
 export const nivelesQuery = gql`
@@ -41,10 +38,7 @@ export const nivelesQuery = gql`
 
 export const tiposoftwareQuery = gql`
     query {
-      getTiposSoftware {
-        idtipo
-        nombre
-      }
+      getTiposSoftware
 }`;
 
 export const paisesQuery = gql`
@@ -74,16 +68,31 @@ export const personaQuery = gql`
           provincia
           canton
           distrito
+          experiencias {
+            empresa
+            cargo
+            fechadeingreso
+            fechadesalida
+            trabajactual
+            descripcion
+          }
+          idiomas {
+            idioma
+            nivelidioma
+          }
+          estudios {
+            nombreinstitucion
+            anio
+            gradoobtenido
+          }
       }
 }`;
 
 export const empresaQuery = gql`
-    query EmpresaLogin($nombreusuario: String!, $contrasenia: String!){
-      empresaLogin(nombreusuario: $nombreusuario, contrasenia: $contrasenia) {
+    query EmpresaLogin($nombreusuario: String!, $contrasenia: String!) {
+        empresaLogin(nombreusuario: $nombreusuario, contrasenia: $contrasenia) {
           nombreusuario
           nombre
-          logo
-          nombrecontacto
           email
           telefono1
           telefono2
@@ -91,7 +100,31 @@ export const empresaQuery = gql`
           provincia
           canton
           distrito
-      }
+          logo
+          concursos {
+            idconcurso
+            empresa
+            nombreempresa
+            nombredelpuesto
+            fechaderegistro
+            fechadecaducidad
+            descripcion
+            responsabilidades
+            idiomas {
+              nombre
+              nivel
+            }
+            certificaciones {
+              titulo
+              obligatorio
+            }
+            dominios{
+              nombre
+              tipo
+              obligatorio
+            }
+          }
+        }
 }`;
 
 export const empresaNombreUsuarioQuery = gql`
@@ -176,6 +209,100 @@ mutation CrearEmpresa($nombreusuario: String!, $contrasenia: String!, $email: St
 export const crearPersonaMutation = gql`
 mutation CrearPersona($nombreusuario: String!, $contrasenia: String!, $nombre: String!, $apellido1: String!, $apellido2: String!, $email: String!, $fechadenacimiento: String!, $nacionalidad: String!) {
   crearPersona(nombreusuario: $nombreusuario, contrasenia: $contrasenia, nombre: $nombre, apellido1: $apellido1, apellido2: $apellido2, email: $email, fechadenacimiento: $fechadenacimiento, nacionalidad: $nacionalidad) {
+    success
+    message
+  }
+}`;
+
+export const agregarExperienciasMutation = gql`
+mutation AgregarExperiencias($nombreusuario: String!, $experiencias: [ExperienciaInput]) {
+  agregarExperienciasPorPersona(nombreusuario: $nombreusuario, experiencias: $experiencias) {
+    success
+    message
+  }
+}`;
+
+export const agregarDominiosPorExperienciaMutation = gql`
+mutation AgregarDominios($nombreusuario: String!, $numeroexperiencia: Int!, $dominios: [DominioExperienciaInput]) {
+  agregarDominioPorExperiencia(nombreusuario: $nombreusuario, numeroexperiencia: $numeroexperiencia, dominios: $dominios) {
+    success
+    message
+  }
+}`;
+
+export const agregarIdiomasPorPersonaMutation = gql`
+mutation AgregarIdiomas($nombreusuario: String!, $idiomas: [IdiomaInput]) {
+  agregarIdiomasPorPersona(nombreusuario: $nombreusuario, idiomas: $idiomas) {
+    success
+    message
+  }
+}`;
+
+export const agregarEstudiosPorPersonaMutation = gql`
+mutation AgregarEstudios($nombreusuario: String!, $estudios: [EstudioInput]) {
+  agregarEstudiosPorPersona(nombreusuario: $nombreusuario, estudios: $estudios) {
+    success
+    message
+  }
+}`;
+
+export const agregarCertificacionesPorPersonaMutation = gql`
+mutation AgregarCertificaciones($nombreusuario: String!, $certificaciones: [CertificacionInput]) {
+  agregarCertificacionesPorPersona(nombreusuario: $nombreusuario, certificaciones: $certificaciones) {
+    success
+    message
+  }
+}`;
+
+export const actualizarConcursoMutation = gql`
+mutation ActualizarConcurso($concurso: ConcursoInput) {
+  actualizarConcurso(concurso: $concurso) {
+    success
+    message
+  }
+}`;
+
+export const crearConcursoMutation = gql`
+mutation ActualizarConcurso($concurso: ConcursoInput) {
+  crearConcurso(concurso: $concurso)
+}`;
+
+
+export const agregarDominiosPorConcursoMutation = gql`
+mutation AgregarDominios($idconcurso: Int!, $dominios: [DominioConcursoInput]) {
+  agregarDominiosPorConcurso(idconcurso: $idconcurso, dominios: $dominios) {
+    success
+    message
+  }
+}`;
+
+export const agregarIdiomasPorConcursoMutation = gql`
+mutation AgregarIdiomas($idconcurso: Int!, $idiomas: [IdiomaConcursoInput]) {
+  agregarIdiomasPorConcurso(idconcurso: $idconcurso, idiomas: $idiomas) {
+    success
+    message
+  }
+}`;
+
+export const agregarCertificacionesPorConcursoMutation = gql`
+mutation AgregarCertificaciones($idconcurso: Int!, $certificaciones: [CertificacionConcursoInput]) {
+  agregarCertificacionesPorConcurso(idconcurso: $idconcurso, certificaciones: $certificaciones) {
+    success
+    message
+  }
+}`;
+
+export const agregarResponsabilidadesPorConcursoMutation = gql`
+mutation AgregarResponsabilidades($idconcurso: Int!, $responsabilidades: [String]) {
+  agregarResponsabilidadesPorConcurso(idconcurso: $idconcurso, responsabilidades: $responsabilidades) {
+    success
+    message
+  }
+}`;
+
+export const eliminarConcurso = gql`
+mutation EliminarConcurso($idconcurso: Int!) {
+  eliminarConcurso(idconcurso: $idconcurso) {
     success
     message
   }

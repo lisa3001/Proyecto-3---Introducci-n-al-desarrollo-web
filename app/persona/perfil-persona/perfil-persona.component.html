@@ -1,0 +1,43 @@
+<app-header-component></app-header-component>
+<ul class="nav nav-tabs" id="myTab" role="tablist" style="height: 8%; background-color: #f0f0f0;">
+  <li class="nav-item">
+    <a class="nav-link active" id="informacion-tab" data-toggle="tab" href="#informacion" role="tab"
+      aria-controls="informacion" aria-selected="true">Información</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="idiomas-tab" data-toggle="tab" href="#idiomas" role="tab" aria-controls="idiomas"
+      aria-selected="false">Idiomas</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="experiencia-tab" data-toggle="tab" href="#experiencia" role="tab"
+      aria-controls="experiencia" aria-selected="false">Experiencia</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="estudios-tab" data-toggle="tab" href="#estudios" role="tab" aria-controls="estudios"
+      aria-selected="false">Estudios</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="certificaciones-tab" data-toggle="tab" href="#certificaciones" role="tab"
+      aria-controls="certificaciones" aria-selected="false">Certificaciones</a>
+  </li>
+</ul>
+<div class="container-fluid contenedorInformacion">
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="informacion" role="tabpanel" aria-labelledby="informacion-tab">
+      <app-informacion-personal></app-informacion-personal>
+    </div>
+    <div class="tab-pane fade" id="idiomas" role="tabpanel" aria-labelledby="idiomas-tab">
+      <app-idiomas-persona></app-idiomas-persona>
+    </div>
+    <div class="tab-pane fade" id="experiencia" role="tabpanel" aria-labelledby="experiencia-tab">
+      <app-experiencia-persona></app-experiencia-persona>
+    </div>
+    <div class="tab-pane fade" id="estudios" role="tabpanel" aria-labelledby="estudios-tab">
+      <app-estudios-persona></app-estudios-persona>
+    </div>
+    <div class="tab-pane fade" id="certificaciones" role="tabpanel" aria-labelledby="certificaciones-tab">
+        <app-certificaciones-persona></app-certificaciones-persona>
+    </div>
+  </div>
+  <app-footer-component></app-footer-component>
+</div>

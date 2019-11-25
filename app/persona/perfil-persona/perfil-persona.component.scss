@@ -1,0 +1,186 @@
+html, body {
+	background-color: #f0f0f0;
+    font-family: "Myriad Pro";
+}
+
+.container-fluid {
+	width: 100%;
+	margin: 0%;
+	padding: 0%;
+    background-color: #f0f0f0;
+}
+
+.contenedorInformacion{
+	height: 78%;
+	background-color: #f0f0f0;
+    overflow-y:auto;
+
+	::-webkit-scrollbar { 
+        display: none;
+    }
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      overflow-y:scroll;
+      overflow-x:hidden;
+}
+
+ul > li > a{
+	font-family: "Myriad Pro";
+	color: rgb(9, 134, 136);
+	font-size: larger;
+}
+
+.iconoEditar:hover{
+    cursor: pointer;
+}
+
+.btnRegistrar{
+    background-color: rgb(243, 88, 25);
+    border-color: rgb(243, 88, 25);
+}
+
+.btnRegistrar:hover{
+    cursor: pointer;
+}
+
+.iconoEditar{
+    height: 50px;
+}
+
+hr.divider{
+    border-top: 1px solid #8c8b8b;
+    margin: 0&;
+    padding: 0%;
+}
+
+
+/* Modal styles */
+
+
+.modal .modal-dialog {
+    max-width: 800px;
+}
+.modal .modal-header, .modal .modal-body, .modal .modal-footer {
+    padding: 20px 30px;
+}
+.modal .modal-content {
+    border-radius: 3px;
+}
+.modal .modal-footer {
+    background: #ecf0f1;
+    border-radius: 0 0 3px 3px;
+}
+.modal .modal-title {
+    display: inline-block;
+}
+.modal .form-control {
+    border-radius: 2px;
+    box-shadow: none;
+    border-color: #dddddd;
+}
+.modal textarea.form-control {
+    resize: vertical;
+}
+.modal .btn {
+    border-radius: 2px;
+    min-width: 100px;
+}	
+.modal form label {
+    font-weight: normal;
+}
+
+
+#advanced-search-form{
+    font-family: "Myriad Pro";
+    background-color: #fff;
+    max-width: 60%;
+    margin-bottom: 3%;
+    padding: 20px;
+    color: #858b8e;
+}
+
+#advanced-search-form2{
+    font-family: "Myriad Pro";
+    background-color: #fff;
+    max-width: 80%;
+    color: #858b8e;
+}
+
+#advanced-search-form span{
+    padding-bottom: 0%;
+    margin: 10px 20px;
+    font-size: 24px;
+}
+
+#advanced-search-form hr{
+    margin-top: 38px;
+    margin-bottom: 54px;
+    margin-left:3px;
+    border: 1px solid #cccccc;
+
+}
+
+#advanced-search-form .form-group{
+	margin-bottom: 20px;
+    margin-left:20px;
+	width: 30%;
+    float:left;
+    text-align: left;
+}
+
+#advanced-search-form .form-control{
+    padding: 12px 20px;
+    height: auto;
+    border-radius: 2px;
+}
+
+#advanced-search-form .radio-inline{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#advanced-search-form .gender{
+    width: 30%;
+    margin-top: 30px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#advanced-search-form .btn{
+    width: 46%;
+    margin: 20px auto 0;
+    display: block;
+    outline: none;
+}
+
+@media screen and (min-width: 990px){
+    #advanced-search-form .form-group{
+        width: 45%;
+    }
+
+    #advanced-search-form{
+        margin-top: 0;
+    }
+    .contenedor{
+        display: flex;
+    }
+    #contenedorImagen{
+        width: 20%;
+    }
+    #contenedorInformacion{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 800px){
+    #advanced-search-form .form-group{
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #advanced-search-form span{
+        text-align: center;
+    }
+    
+}

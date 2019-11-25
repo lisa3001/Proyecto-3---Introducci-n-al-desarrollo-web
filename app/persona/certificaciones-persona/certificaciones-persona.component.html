@@ -1,0 +1,114 @@
+<div class="container-fluid" style="min-height: 500px;">
+        <div class="row">
+            <a title="Guardar cambios" style="margin-left: 65%; margin-top: 2%; margin-bottom: 1%;"
+                (click)="GuardarCambios()" data-toggle="modal"><img class="iconoEditar" src="assets/images/guardar.png"
+                    alt="icono guardar cambios">
+            </a>
+            <a title="Descartar cambios" style="margin-left: 2%; margin-top: 2%; margin-bottom: 1%;"
+                href="#omitChangesModalCertificaciones" data-toggle="modal"><img class="iconoEditar" src="assets/images/descartar.png"
+                    alt="icono editar">
+            </a>
+        </div>
+        <div class="row">
+            <div class="container-fluid" id="advanced-search-form">
+                <div class="col-md-12">
+                    <div class="table-wrapper table-responsive-md col-md-12">
+                        <div class="table-title">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="">
+                                        <label>Titulo obtenido</label>
+                                        <input class="form-control" placeholder="Título" id="1"
+                                            name="1" [(ngModel)]="selectedTitulo" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="">
+                                        <label>Nombre de la institución</label>
+                                        <input class="form-control" placeholder="Institución" id="2"
+                                            name="2" [(ngModel)]="selectedInstitucion" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="">
+                                        <label>Año</label>
+                                        <input class="form-control" placeholder="Año" id="3"
+                                            name="3" [(ngModel)]="selectedAnio"onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class ="row">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4">
+                                            <button style="height: auto;" type="button" id="addButtonId"
+                                                class="btn btn-info add-new" (click)="agregarEstudio()">
+                                                <i class="fa fa-plus"></i></button>
+                                        </div>
+                                        <div class="col-md-4"></div>
+                            </div>
+                        </div>
+                        <p class="errorAgregar" id="idErrorIdioma"></p>
+                        <table class="table table-bordered" style="margin-top: 10px;">
+                            <thead>
+                                <tr>
+                                    <th>Titulo obtenido</th>
+                                    <th>Institución</th>
+                                    <th>Año</th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenedorDominios">
+                                <tr *ngFor="let certificacion of mainservice.editCertificaciones">
+                                    <td>{{certificacion.titulo}}</td>
+                                    <td>{{certificacion.nombreinstitucion}}</td>
+                                    <td>{{certificacion.anio}}</td>
+                                    <td><button style="background: transparent; border: none !important;"
+                                            (click)="deleteEstudio(certificacion)">
+                                            <img src="assets/images/basurero.png" />
+                                        </button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <a style="display: none;" href="#changesModalCertificaciones" #changesModalCertificacionesB data-toggle="modal"></a>
+        <div class="modal fade" id="changesModalCertificaciones" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="deleteLabel">Éxito</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p> Los certificacions se han guardado exitosamente. </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="deleteConfirm"
+                            data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="modal fade" data-backdrop="static" id="omitChangesModalCertificaciones" role="dialog" aria-labelledby="omitLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="deleteLabel">Advertencia</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p> Todos los datos que haya modificado se omitirán. ¿Desea continuar? </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" id="canConfirm" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-success" id="cancelConfirm" (click)="cancelarCambiosSure()"
+                            data-dismiss="modal">Aceptar</button>
+                        <button type="button" #cancelarCambiosCertificaciones data-dismiss="modal" style="display:none;"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

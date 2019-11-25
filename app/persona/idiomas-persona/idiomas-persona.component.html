@@ -1,0 +1,106 @@
+<div class="container-fluid" style="min-height: 500px;">
+    <div class="row">
+        <a title="Guardar cambios" style="margin-left: 65%; margin-top: 2%; margin-bottom: 1%;"
+            (click)="GuardarCambios()" data-toggle="modal"><img class="iconoEditar" src="assets/images/guardar.png"
+                alt="icono guardar cambios">
+        </a>
+        <a title="Descartar cambios" style="margin-left: 2%; margin-top: 2%; margin-bottom: 1%;"
+            href="#omitChangesModal" data-toggle="modal"><img class="iconoEditar" src="assets/images/descartar.png"
+                alt="icono editar">
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="container-fluid" id="advanced-search-form">
+            <div class="col-md-12">
+                <div class="table-wrapper table-responsive-md col-md-12">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Idioma</label>
+                                <select class="dropdwn custom-select form-control" id="idiomaOptionAgregar"
+                                    name="idiomaOptionAgregar" [(ngModel)]="selectedIdioma">
+                                    <option *ngFor="let idioma of mainservice.idiomas;" [value]="idioma"
+                                        >
+                                        {{idioma}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label>Nivel del idioma</label>
+                                <select class="dropdwn custom-select form-control" id="nivelOptionAgregar"
+                                    name="nivelOptionAgregar" [(ngModel)]="selectedNivel">
+                                    <option *ngFor="let nivelidioma of mainservice.nivelesidioma" [value]="nivelidioma"
+                                        >
+                                        {{nivelidioma}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button style="height: auto;" type="button" id="addButtonId"
+                                    class="btn btn-info add-new" (click)="agregarIdioma()">
+                                    <i class="fa fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="errorAgregar" id="idErrorIdioma"></p>
+                    <table class="table table-bordered" style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th>Idioma</th>
+                                <th>Nivel de idioma</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody id="contenedorDominios">
+                            <tr *ngFor="let idioma of mainservice.editIdiomas">
+                                <td>{{idioma.idioma}}</td>
+                                <td>{{idioma.nivelidioma}}</td>
+                                <td><button style="background: transparent; border: none !important;"
+                                        (click)="deleteIdioma(idioma)">
+                                        <img src="assets/images/basurero.png" />
+                                    </button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a style="display: none;" href="#changesModal" #changesModalB data-toggle="modal"></a>
+    <div class="modal fade" id="changesModal" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deleteLabel">Éxito</h4>
+                </div>
+                <div class="modal-body">
+                    <p> Los idiomas se han guardado exitosamente. </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="deleteConfirm"
+                        data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" data-backdrop="static" id="omitChangesModal" role="dialog" aria-labelledby="omitLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deleteLabel">Advertencia</h4>
+                </div>
+                <div class="modal-body">
+                    <p> Todos los datos que haya modificado se omitirán. ¿Desea continuar? </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="canConfirm" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="cancelConfirm" (click)="cancelarCambiosSure()"
+                        data-dismiss="modal">Aceptar</button>
+                    <button type="button" #cancelarCambios data-dismiss="modal" style="display:none;"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="container-fluid" style="min-height: 500px;">
+    <div class="row">
+        <a title="Guardar cambios" style="margin-left: 65%; margin-top: 2%; margin-bottom: 1%;"
+            (click)="GuardarCambios()" data-toggle="modal"><img class="iconoEditar" src="assets/images/guardar.png"
+                alt="icono guardar cambios">
+        </a>
+        <a title="Descartar cambios" style="margin-left: 2%; margin-top: 2%; margin-bottom: 1%;"
+            href="#omitChangesModalEstudios" data-toggle="modal"><img class="iconoEditar" src="assets/images/descartar.png"
+                alt="icono editar">
+        </a>
+    </div>
+    <div class="row">
+        <div class="container-fluid" id="advanced-search-form">
+            <div class="col-md-12">
+                <div class="table-wrapper table-responsive-md col-md-12">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="">
+                                    <label>Grado obtenido</label>
+                                    <input class="form-control" placeholder="Grado" id="1"
+                                        name="1" [(ngModel)]="selectedGrado" required>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="">
+                                    <label>Nombre de la institución</label>
+                                    <input class="form-control" placeholder="Institución" id="2"
+                                        name="2" [(ngModel)]="selectedInstitucion" required>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="">
+                                    <label>Año</label>
+                                    <input class="form-control" placeholder="Año" id="3"
+                                        name="3" [(ngModel)]="selectedAnio"onkeypress='return event.charCode >= 48 && event.charCode <= 57' required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class ="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                        <button style="height: auto;" type="button" id="addButtonId"
+                                            class="btn btn-info add-new" (click)="agregarEstudio()">
+                                            <i class="fa fa-plus"></i></button>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                        </div>
+                    </div>
+                    <p class="errorAgregar" id="idErrorIdioma"></p>
+                    <table class="table table-bordered" style="margin-top: 10px;">
+                        <thead>
+                            <tr>
+                                <th>Grado obtenido</th>
+                                <th>Institución</th>
+                                <th>Año</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody id="contenedorDominios">
+                            <tr *ngFor="let estudio of mainservice.editEstudios">
+                                <td>{{estudio.gradoobtenido}}</td>
+                                <td>{{estudio.nombreinstitucion}}</td>
+                                <td>{{estudio.anio}}</td>
+                                <td><button style="background: transparent; border: none !important;"
+                                        (click)="deleteEstudio(estudio)">
+                                        <img src="assets/images/basurero.png" />
+                                    </button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a style="display: none;" href="#changesModalEstudios" #changesModalEstudiosB data-toggle="modal"></a>
+    <div class="modal fade" id="changesModalEstudios" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deleteLabel">Éxito</h4>
+                </div>
+                <div class="modal-body">
+                    <p> Los estudios se han guardado exitosamente. </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="deleteConfirm"
+                        data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" data-backdrop="static" id="omitChangesModalEstudios" role="dialog" aria-labelledby="omitLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deleteLabel">Advertencia</h4>
+                </div>
+                <div class="modal-body">
+                    <p> Todos los datos que haya modificado se omitirán. ¿Desea continuar? </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="canConfirm" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="cancelConfirm" (click)="cancelarCambiosSure()"
+                        data-dismiss="modal">Aceptar</button>
+                    <button type="button" #cancelarCambiosEstudios data-dismiss="modal" style="display:none;"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

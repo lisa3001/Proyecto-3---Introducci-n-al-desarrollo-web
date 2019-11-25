@@ -17,11 +17,6 @@ export type TipoSoftware = {
   nombre: string
 }
 
-export type IdiomaUtil = {
-  id: number,
-  name: string
-}
-
 export type Direccion = {
   provinciacod: string,
   provincia: string,
@@ -49,30 +44,28 @@ export type Persona = {
   fotografia: string,
   estudios: Estudio[],
   experiencias: Experiencia[],
-  idiomas: string[],
+  idiomas: Idioma[],
   certificaciones: Certificacion[]
 }
 
 export type Idioma = {
-  'ididioma': number,
+  'idioma': string,
   'nivelidioma': string
 }
 
 export type IdiomaInput = {
-  'ididioma': number,
+  'idioma': string,
   'nivelidioma': string
 }
 
 export type Estudio = {
   'gradoobtenido': string,
-  'tipodeinstitucion': string,
   'nombreinstitucion': string,
   'anio': string
 }
 
 export type EstudioInput = {
   'gradoobtenido': string,
-  'tipodeinstitucion': string,
   'nombreinstitucion': string,
   'anio': string
 }
@@ -80,7 +73,6 @@ export type EstudioInput = {
 export type Certificacion = {
   'numeroCertificacion': number,
   'titulo': string,
-  'tipodeinstitucion': string,
   'nombreinstitucion': string,
   'anio': string
 }
@@ -88,7 +80,6 @@ export type Certificacion = {
 export type CertificacionInput = {
   'numeroCertificacion': number,
   'titulo': string,
-  'tipodeinstitucion': string,
   'nombreinstitucion': string,
   'anio': string
 }
@@ -99,18 +90,17 @@ export type Experiencia = {
   'cargo': string,
   'fechadeingreso': string,
   'fechadesalida': string,
-  'trabajactual': string,
+  'trabajactual': boolean,
   'descripcion': string,
-  'dominios': [DominioExperiencia]
+  'dominios': DominioExperiencia[]
 }
 
 export type ExperienciaInput = {
-  'numeroexperiencia': number,
   'empresa': string,
   'cargo': string,
   'fechadeingreso': string,
   'fechadesalida': string,
-  'trabajactual': string,
+  'trabajactual': boolean,
   'descripcion': string
 }
 
@@ -119,7 +109,7 @@ export type DominioExperiencia = {
   'nombreusuario': string,
   'numerodominio': number,
   'nombredellenguaje': string,
-  'tipo': string
+  'tipodesoftware': string
 }
 
 export type DominioExperienciaInput = {
@@ -127,7 +117,7 @@ export type DominioExperienciaInput = {
   'nombreusuario': string,
   'numerodominio': number,
   'nombredellenguaje': string,
-  'idtipo': number
+  'tipodesoftware': string
 }
 
 export type Empresa = {
@@ -143,7 +133,7 @@ export type Empresa = {
   'canton': string,
   'distrito': string,
   'nombrecontacto': string,
-  'concursos': [Concurso]
+  'concursos': Concurso[]
 }
 
 export type DominioConcurso = {
@@ -157,6 +147,8 @@ export type DominioConcursoInput = {
   'idtipo': number,
   'obligatorio': Boolean
 }
+
+
 
 export type CertificacionConcurso = {
   'titulo': string,
@@ -181,14 +173,26 @@ export type IdiomaConcursoInput = {
 export type Concurso = {
   'idconcurso': number,
   'empresa': string,
+  'nombreempresa': string,
   'nombredelpuesto': string,
   'fechaderegistro': string,
   'fechadecaducidad': string,
   'descripcion': string,
-  'certificaciones': [CertificacionConcurso],
-  'dominios': [DominioConcurso],
-  'idiomas': [IdiomaConcurso],
-  'responsabilidades': [string]
+  'certificaciones': CertificacionConcurso[],
+  'dominios': DominioConcurso[],
+  'idiomas': IdiomaConcurso[],
+  'responsabilidades': string[]
+}
+
+
+export type ConcursoInput = {
+  'idconcurso': number,
+  'empresa': string,
+  'nombreempresa': string,
+  'nombredelpuesto': string,
+  'fechaderegistro': string,
+  'fechadecaducidad': string,
+  'descripcion': string
 }
 
 export type Result = {

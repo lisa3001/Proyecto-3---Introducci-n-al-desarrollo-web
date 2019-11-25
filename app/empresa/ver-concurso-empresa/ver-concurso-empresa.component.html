@@ -1,0 +1,116 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist" >
+    <li class="nav-item">
+        <a class="nav-link active" id="agregar-dominio-tab" data-toggle="tab" href="#responsabilidadesVer" role="tab"
+            aria-controls="responsabilidadesVer" aria-selected="false">Responsabilidades</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="idiomasConcursoVer-tab" data-toggle="tab" href="#idiomasConcursoVer" role="tab"
+            aria-controls="idiomasConcursoVer" aria-selected="true">Idiomas requeridos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="agregar-experiencia-tab" data-toggle="tab" href="#certificacionesConcursoVer" role="tab"
+            aria-controls="certificacionesConcursoVer" aria-selected="true">Certificaciones requeridas</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="agregar-experiencia-tab" data-toggle="tab" href="#dominiosConcursoVer" role="tab"
+            aria-controls="dominiosConcursoVer" aria-selected="true">Dominios requeridos</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent" style="margin-top: 10px;">
+    <div class="tab-pane fade show active" id="responsabilidadesVer" role="tabpanel" aria-labelledby="dominios-tab">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrapper table-responsive-md col-md-12">
+                    <div class="table-title">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenedorResponsabilidadesVer">
+                                <tr *ngFor="let resp of mainservice.selectedConcurso.responsabilidades">
+                                    <td>{{resp}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="idiomasConcursoVer" role="tabpanel" aria-labelledby="dominios-tab">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrapper table-responsive-md col-md-12">
+                    <div class="table-title">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Idioma</th>
+                                    <th>Nivel</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenedorIdiomasVer">
+                                <tr *ngFor="let resp of mainservice.selectedConcurso.idiomas">
+                                    <td>{{resp.nombre}}</td>
+                                    <td>{{resp.nivel}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="certificacionesConcursoVer" role="tabpanel" aria-labelledby="dominios-tab">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrapper table-responsive-md col-md-12">
+                    <div class="table-title">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Titulo</th>
+                                    <th>Obligatorio</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenedorDominiosVer">
+                                <tr *ngFor="let certi of mainservice.selectedConcurso.certificaciones">
+                                    <td>{{certi.titulo}}</td>
+                                    <td>{{ certi.obligatorio == true ? 'Sí' : 'No' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="dominiosConcursoVer" role="tabpanel" aria-labelledby="dominios-tab">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrapper table-responsive-md col-md-12">
+                        <div class="table-title">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Tipo</th>
+                                        <th>Obligatorio</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="contenedorDominiosVer">
+                                    <tr *ngFor="let dominio of mainservice.selectedConcurso.dominios">
+                                        <td>{{dominio.nombre}}</td>
+                                        <td>{{dominio.tipo}}</td>
+                                        <td>{{ dominio.obligatorio == true ? 'Sí' : 'No' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

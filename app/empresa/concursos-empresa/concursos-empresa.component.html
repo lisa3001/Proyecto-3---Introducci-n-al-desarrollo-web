@@ -1,0 +1,109 @@
+<div class="container-fluid" style="min-height: 500px;">
+    <div class="row">
+        <a title="Agregar concurso" style="margin-left: 80%; margin-top: 2%; margin-bottom: 1%;"
+            href="#agregarNuevaConcurso" data-toggle="modal" (click)="agregarConcurso()"><img class="iconoEditar"
+                src="assets/images/agregar.png" alt="icono agregar">
+        </a>
+    </div>
+
+    <div class="row" *ngFor="let concurso of mainservice.empresa.concursos">
+        <div class="container-fluid" id="advanced-search-form">
+            <div>
+                <span>Concurso</span>
+                <a href="#editarConcurso" data-toggle="modal"><img class="iconoEditar" (click)="editar(concurso)"
+                        src="assets/images/editar.png" alt="icono editar"></a>
+                <a (click)=eliminarConcurso(concurso)><img class="iconoEditar" src="assets/images/eliminar.png"
+                        alt="icono eliminar" style="margin-left: 6px;"></a>
+            </div>
+            <hr class="divider">
+            <div id="contenedorInformacion">
+                <form style="color: black;">
+                    <div class="form-group">
+                        <label for="nombre-empresa">Nombre del puesto</label>
+                        <input type="text" class="form-control" placeholder="Puesto" id="empresa-info"
+                            name="empresaInfo" [(ngModel)]="concurso.nombredelpuesto" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre-cargo">Fecha de registro</label>
+                        <input type="text" class="form-control" placeholder="Fecha de registro" id="cargo-info" name="cargo-info"
+                            [(ngModel)]="concurso.fechaderegistro" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="salida">Fecha de salida</label>
+                        <input type="text" class="form-control" placeholder="Fecha de salida" id="fecha-salida-info"
+                            name="fecha-salida-info" [(ngModel)]="concurso.fechadecaducidad" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="desc">Descripción</label>
+                        <input type="text" class="form-control" placeholder="Descripción" id="descripcion-info"
+                            name="descripcion-info" [(ngModel)]="concurso.descripcion" style="overflow-y:auto;"
+                            disabled>
+                    </div>
+                    <div class="clearfix"></div>
+                    <a title="Ver concurso" class="btn btnRegistrar btn-success" href="#verConcurso" data-toggle="modal"
+                        (click)="mainservice.selectedConcurso = concurso;">Ver detalles</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="verConcurso" role="dialog" aria-labelledby="omitLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 90%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deleteLabel">Concurso</h4>
+                </div>
+                <div class="modal-body">
+                    <app-ver-concurso-empresa></app-ver-concurso-empresa>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="deleteConfirm"
+                        data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editarConcurso" role="dialog" aria-labelledby="omitLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 90%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deleteLabel">Concurso</h4>
+                </div>
+                <div class="modal-body">
+                    <app-editar-concurso-empresa></app-editar-concurso-empresa>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="button" class="btn btnRegistrar btn-success" (click)="guardarCambiosEdit()"
+                        value="Guardar Cambios">
+                    <input type="button" class="btn btn-default" #dismissCambiosEditConcursos data-dismiss="modal"
+                        style="display: none;" value="Cancelar">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="agregarNuevaConcurso" role="dialog" aria-labelledby="omitLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="min-width: 90%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deleteLabel">Nuevo concurso</h4>
+                </div>
+                <div class="modal-body">
+                    <app-agregar-concurso-empresa></app-agregar-concurso-empresa>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                    <input type="button" class="btn btnRegistrar btn-success" (click)="guardarCambiosAgregar()"
+                        value="Guardar Cambios">
+                    <input type="button" class="btn btn-default" #dismissCambiosAgregarConcursos data-dismiss="modal"
+                        style="display: none;" value="Cancelar">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
