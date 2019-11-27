@@ -100,6 +100,7 @@ export class ClientRegisterComponent implements OnInit {
       element.classList.remove("is-invalid");
       element.className += " is-valid";
     }
+    this.saveData(tagName, element.value.trim());
   }
 
   saveData(tagName: string, data: string){
